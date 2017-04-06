@@ -59,3 +59,13 @@ To compile clojurescript to javascript:
 lein clean
 lein cljsbuild once min
 ```
+
+
+## Run in Production (docker)
+
+```
+docker-compose build
+docker-compose up
+```
+
+Open browser and go to http://ip:3000
