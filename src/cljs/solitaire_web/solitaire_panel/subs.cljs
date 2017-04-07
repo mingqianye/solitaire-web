@@ -1,6 +1,7 @@
 (ns solitaire-web.solitaire-panel.subs
   (:require [re-frame.core :refer [reg-sub subscribe]]
             [solitaire-core.public-api :refer [can-be-selected?]]
+            [solitaire-web.solitaire-panel.different-piles :refer [foundation-piles]]
             
             ))
 
@@ -19,3 +20,11 @@
   :<- [:cards]
   (fn [cards [_ card-id]]
     (nth cards card-id)))
+
+(reg-sub :money
+  :<- [:cards]
+  (fn [cards _]
+    (->> cards 
+      (filter #(contains? foundation-piles (:pile-name %)))
+      (count)
+      (* 5))))
