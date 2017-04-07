@@ -10,7 +10,7 @@
   (->> (new-game)
     (sort-by :card-id)
     (map-indexed (fn [idx card] (merge card (coordinate-before-deal {:card-id idx}))))
-    (map (fn [card] (merge card {:width "8" :selected? false})))
+    (map (fn [card] (merge card {:selected? false})))
     (vec)))
 
 
