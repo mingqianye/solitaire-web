@@ -1,17 +1,21 @@
 (defproject solitaire-web "0.1.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.9.229"]
-                 [reagent "0.6.0"]
+                 [org.clojure/clojurescript "1.9.473" :exclus [org.apache.ant/ant]]
+                 [reagent "0.6.0" :exclusions [cljsjs/react]]
                  [re-frame "0.9.2"]
-                 [org.clojure/core.async "0.2.391"]
+                 [org.clojure/core.async "0.2.395"]
                  [re-com "2.0.0"]
-                 [garden "1.3.2"]
+                 ;[garden "1.3.2"]
                  [ns-tracker "0.3.0"]
                  [compojure "1.5.0"]
                  [yogthos/config "0.8"]
-                 [ring "1.4.0"]]
+                 [ring "1.4.0"]
+                 [reanimated "0.5.0"]
+                 [solitaire-core "0.1.16"]]
 
-  :plugins [[lein-cljsbuild "1.1.4"]
+  :plugins [[lein-cljsbuild "1.1.5"]
+            [lein-externs "0.1.6"]
+            [lein-shell "0.5.0"]
             [lein-garden "0.2.8"]]
 
   :min-lein-version "2.5.3"
@@ -69,5 +73,5 @@
 
   :uberjar-name "solitaire-web.jar"
 
-  :prep-tasks [["cljsbuild" "once" "min"]["garden" "once"] "compile"]
+  :prep-tasks [["cljsbuild" "once" "min"] "compile"]
   )
