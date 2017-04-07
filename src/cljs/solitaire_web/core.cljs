@@ -1,9 +1,10 @@
 (ns solitaire-web.core
-    (:require [reagent.core :as reagent]
-              [re-frame.core :as re-frame]
+    (:require [reagent.core :as reagent :refer [atom]]
+              [cljs.pprint :refer [pprint]]
               [solitaire-web.events]
               [solitaire-web.subs]
-              [solitaire-web.views :as views]
+              [solitaire-web.solitaire-panel.views :as views]
+              [re-frame.core :refer [clear-subscription-cache! dispatch dispatch-sync subscribe]]
               [solitaire-web.config :as config]))
 
 
@@ -12,12 +13,32 @@
     (enable-console-print!)
     (println "dev mode")))
 
+(defn debug-component []
+  (let [whole-db (subscribe [:whole-db])]
+    (fn []
+      [:div
+        [:hr]
+        [:p "DB:"]
+        [:pre (with-out-str (pprint @whole-db))]])))
+
+(defn root-component []
+  (let [active  (subscribe [:active-panel])]
+  (fn []
+    [:div
+      (condp = @active
+        :solitaire-panel [views/main]
+        [:p "No active panel"])
+      ;[debug-component]
+    ])))
+
 (defn mount-root []
-  (re-frame/clear-subscription-cache!)
-  (reagent/render [views/main-panel]
+  (clear-subscription-cache!)
+  (reagent/render [root-component]
                   (.getElementById js/document "app")))
 
 (defn ^:export init []
-  (re-frame/dispatch-sync [:initialize-db])
+  (dispatch-sync [:initialise-db])
+  (dispatch-sync [:set-x])
+  (dispatch-sync [:set-active-panel :solitaire-panel])
   (dev-setup)
   (mount-root))

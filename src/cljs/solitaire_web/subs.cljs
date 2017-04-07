@@ -1,8 +1,10 @@
 (ns solitaire-web.subs
-    (:require-macros [reagent.ratom :refer [reaction]])
-    (:require [re-frame.core :as re-frame]))
+  (:require [re-frame.core :refer [reg-sub]]))
 
-(re-frame/reg-sub
- :name
- (fn [db]
-   (:name db)))
+(reg-sub :whole-db
+  (fn [db _]
+    db))
+
+(reg-sub :active-panel
+  (fn [db _]
+    (:active-panel db)))
