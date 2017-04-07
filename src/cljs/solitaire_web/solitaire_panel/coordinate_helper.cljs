@@ -1,17 +1,20 @@
 (ns solitaire-web.solitaire-panel.coordinate-helper)
 
+(defn x [index]
+  (* 130 index))
+
 (def placeholders
-    [{:pile-name :foundation-1      :x 450 :y 0}
-     {:pile-name :foundation-2      :x 600 :y 0}
-     {:pile-name :foundation-3      :x 750 :y 0}
-     {:pile-name :foundation-4      :x 900 :y 0}
-     {:pile-name :tableau-1-face-up :x 0   :y 150}
-     {:pile-name :tableau-2-face-up :x 150 :y 150}
-     {:pile-name :tableau-3-face-up :x 300 :y 150}
-     {:pile-name :tableau-4-face-up :x 450 :y 150}
-     {:pile-name :tableau-5-face-up :x 600 :y 150}
-     {:pile-name :tableau-6-face-up :x 750 :y 150}
-     {:pile-name :tableau-7-face-up :x 900 :y 150}
+    [{:pile-name :foundation-1      :x (x 3) :y 0}
+     {:pile-name :foundation-2      :x (x 4) :y 0}
+     {:pile-name :foundation-3      :x (x 5) :y 0}
+     {:pile-name :foundation-4      :x (x 6) :y 0}
+     {:pile-name :tableau-1-face-up :x (x 0) :y 150}
+     {:pile-name :tableau-2-face-up :x (x 1) :y 150}
+     {:pile-name :tableau-3-face-up :x (x 2) :y 150}
+     {:pile-name :tableau-4-face-up :x (x 3) :y 150}
+     {:pile-name :tableau-5-face-up :x (x 4) :y 150}
+     {:pile-name :tableau-6-face-up :x (x 5) :y 150}
+     {:pile-name :tableau-7-face-up :x (x 6) :y 150}
      ])
 
 (defn offset [{:keys [pile-name cards]}]
@@ -38,26 +41,26 @@
   (cond 
     (= pile-name :stock) {:x (* 0.4 final) :y (* 0.4 final) :z-index final}
     (= pile-name :waste) {:x (+ 200 (* 20 final)) :y 0 :z-index final}
-    (= pile-name :tableau-1-face-down) {:x 0 :y (+ 150 (* 20 final)) :z-index final}
-    (= pile-name :tableau-2-face-down) {:x 150 :y (+ 150 (* 20 final)) :z-index final}
-    (= pile-name :tableau-3-face-down) {:x 300 :y (+ 150 (* 20 final)) :z-index final}
-    (= pile-name :tableau-4-face-down) {:x 450 :y (+ 150 (* 20 final)) :z-index final}
-    (= pile-name :tableau-5-face-down) {:x 600 :y (+ 150 (* 20 final)) :z-index final}
-    (= pile-name :tableau-6-face-down) {:x 750 :y (+ 150 (* 20 final)) :z-index final}
-    (= pile-name :tableau-7-face-down) {:x 900 :y (+ 150 (* 20 final)) :z-index final}
+    (= pile-name :tableau-1-face-down) {:x (x 0) :y (+ 150 (* 20 final)) :z-index final}
+    (= pile-name :tableau-2-face-down) {:x (x 1) :y (+ 150 (* 20 final)) :z-index final}
+    (= pile-name :tableau-3-face-down) {:x (x 2) :y (+ 150 (* 20 final)) :z-index final}
+    (= pile-name :tableau-4-face-down) {:x (x 3) :y (+ 150 (* 20 final)) :z-index final}
+    (= pile-name :tableau-5-face-down) {:x (x 4) :y (+ 150 (* 20 final)) :z-index final}
+    (= pile-name :tableau-6-face-down) {:x (x 5) :y (+ 150 (* 20 final)) :z-index final}
+    (= pile-name :tableau-7-face-down) {:x (x 6) :y (+ 150 (* 20 final)) :z-index final}
 
-    (= pile-name :tableau-1-face-up)   {:x 0 :y (+ 150 (* 20 final)) :z-index final}
-    (= pile-name :tableau-2-face-up)   {:x 150 :y (+ 150 (* 20 final)) :z-index final}
-    (= pile-name :tableau-3-face-up)   {:x 300 :y (+ 150 (* 20 final)) :z-index final}
-    (= pile-name :tableau-4-face-up)   {:x 450 :y (+ 150 (* 20 final)) :z-index final}
-    (= pile-name :tableau-5-face-up)   {:x 600 :y (+ 150 (* 20 final)) :z-index final}
-    (= pile-name :tableau-6-face-up)   {:x 750 :y (+ 150 (* 20 final)) :z-index final}
-    (= pile-name :tableau-7-face-up)   {:x 900 :y (+ 150 (* 20 final)) :z-index final}
+    (= pile-name :tableau-1-face-up)   {:x (x 0) :y (+ 150 (* 20 final)) :z-index final}
+    (= pile-name :tableau-2-face-up)   {:x (x 1) :y (+ 150 (* 20 final)) :z-index final}
+    (= pile-name :tableau-3-face-up)   {:x (x 2) :y (+ 150 (* 20 final)) :z-index final}
+    (= pile-name :tableau-4-face-up)   {:x (x 3) :y (+ 150 (* 20 final)) :z-index final}
+    (= pile-name :tableau-5-face-up)   {:x (x 4) :y (+ 150 (* 20 final)) :z-index final}
+    (= pile-name :tableau-6-face-up)   {:x (x 5) :y (+ 150 (* 20 final)) :z-index final}
+    (= pile-name :tableau-7-face-up)   {:x (x 6) :y (+ 150 (* 20 final)) :z-index final}
 
-    (= pile-name :foundation-1) {:x 450 :y 0 :z-index final}
-    (= pile-name :foundation-2) {:x 600 :y 0 :z-index final}
-    (= pile-name :foundation-3) {:x 750 :y 0 :z-index final}
-    (= pile-name :foundation-4) {:x 900 :y 0 :z-index final}
+    (= pile-name :foundation-1) {:x (x 3) :y 0 :z-index final}
+    (= pile-name :foundation-2) {:x (x 4) :y 0 :z-index final}
+    (= pile-name :foundation-3) {:x (x 5) :y 0 :z-index final}
+    (= pile-name :foundation-4) {:x (x 6) :y 0 :z-index final}
     :else {:x 400 :y 400 :z 400})))
 
 
