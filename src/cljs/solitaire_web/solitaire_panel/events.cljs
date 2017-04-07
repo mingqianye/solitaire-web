@@ -39,7 +39,3 @@
     (let [cards     (get-in db [:solitaire-panel :cards])
           new-cards (handle-click {:cards cards :card-id card-id})]
       (assoc-in db [:solitaire-panel :cards] new-cards))))
-
-(reg-event-db :add-x
-  (fn  [db [_ px]]
-    (update-in db [:x] #(+ px %))))

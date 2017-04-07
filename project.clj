@@ -5,7 +5,7 @@
                  [re-frame "0.9.2"]
                  [org.clojure/core.async "0.2.395"]
                  [re-com "2.0.0"]
-                 ;[garden "1.3.2"]
+                 [garden "1.3.2"]
                  [ns-tracker "0.3.0"]
                  [compojure "1.5.0"]
                  [yogthos/config "0.8"]
@@ -16,7 +16,7 @@
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-externs "0.1.6"]
             [lein-shell "0.5.0"]
-            [lein-garden "0.2.8"]]
+            [lein-garden "0.3.0"]]
 
   :min-lein-version "2.5.3"
 
@@ -73,5 +73,5 @@
 
   :uberjar-name "solitaire-web.jar"
 
-  :prep-tasks [["cljsbuild" "once" "min"] "compile"]
+  :prep-tasks [["cljsbuild" "once" "min"] ["garden" "once"] "compile"]
   )

@@ -20,34 +20,6 @@
   [:button {:on-click #(dispatch [:start-new-game])} 
    "New game!"])
 
-(defn ani []
-   (let [x (reagent/atom 200)
-        cx (anim/interpolate-to x {:duration 200})]
-    (fn []
-      (let [translate-to (str "translate3d(" @cx "px, 0px, 0px)")]
-        [:div
-         [:button {:on-click (fn [e] (swap! x - 50))} "<"]
-         [:button {:on-click (fn [e] (swap! x + 50))} ">"]
-         [:div {:style {:position "absolute" 
-                        :left @cx}}
-                        ;:transform translate-to}}
-          (str "ani#" @cx)
-          ]]))))
-
-(defn ani-2 []
-   (let [x (subscribe [:x])
-        cx (anim/interpolate-to x {:duration 300})]
-    (fn []
-      (let [translate-to (str "translate3d(" @cx "px,0px,0px)")]
-        [:div
-         [:button {:on-click #(dispatch [:add-x 50])} ">"]
-         [:div {:style {:position "absolute" 
-                        :left @cx}}
-                        ;:transform translate-to}}
-          (str "ani-2#" @cx)
-          ]]))))
-
-
 (defn board []
   [:div  {:style {:background "#45a173"
                   :margin-left "5%"
@@ -56,8 +28,6 @@
                   :height "100%"
                   }}
    [:p "Solitaire panel"]
-   [ani]
-   [ani-2]
    [deal-cards-button]
    [new-game-button]
    (for [ph placeholders]

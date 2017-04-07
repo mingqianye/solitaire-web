@@ -4,7 +4,8 @@
   (:require 
     [solitaire-web.solitaire-panel.different-piles :refer [face-down-piles]]
     [reanimated.core :as anim]
-    [re-frame.core :refer [dispatch dispatch-sync subscribe]])
+    [re-frame.core :refer [dispatch dispatch-sync subscribe]]
+    )
   )
 
 (defn image-front-path [{:keys [suit rank]}]
@@ -62,7 +63,7 @@
           [:img {:src (image-front-path {:suit suit :rank rank})
                  :style {
                          :width "100%"
-                         :box-shadow "0 1px 1px grey"
+                         :box-shadow "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
                          :border-radius "5px"
                          :background (if @selected? "yellow" "white")
                          :backface-visibility "hidden"

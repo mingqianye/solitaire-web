@@ -38,7 +38,6 @@
 
 (defn ^:export init []
   (dispatch-sync [:initialise-db])
-  (dispatch-sync [:set-x])
   (dispatch-sync [:set-active-panel :solitaire-panel])
   (dev-setup)
   (mount-root))

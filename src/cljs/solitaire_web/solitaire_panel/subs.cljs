@@ -19,9 +19,3 @@
   :<- [:cards]
   (fn [cards [_ card-id]]
     (nth cards card-id)))
-
-
-(reg-sub :x
-  (fn [db _]
-    (get db :x)))
-
