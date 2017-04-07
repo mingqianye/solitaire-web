@@ -16,6 +16,7 @@
 (def card
   [:div.card 
     {:position "absolute"
+     :background "white"
      :width "8%"}
     [:img 
       {:width "100%"
@@ -25,12 +26,12 @@
       {:box-shadow "0 1px 1px grey"
        :position "absolute"}]
     [:img.front 
-      {:box-shadow "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"}]
+      {:box-shadow "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
+       :transition "box-shadow 0.3s cubic-bezier(.25,.8,.25,1)"}]
+    [:img.front:hover
+      {:box-shadow "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"}]
     [:img.front.selected
-      {:background "yellow"}]
-    [:img.front.noselected
-      {:background "white"}]
-           ])
+      {:box-shadow "0 0 60px rgba(81, 203, 238, 1)"}]])
 
 
 (defstyles screen
