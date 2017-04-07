@@ -22,12 +22,7 @@
    "New game!"])
 
 (defn board []
-  [:div  {:style {:background "#45a173"
-                  :margin-left "5%"
-                  :margin-right "5%"
-                  :width "90%"
-                  :height "100%"
-                  }}
+  [:div  {:id "board"}
    [:p "Solitaire panel"]
    [deal-cards-button]
    [new-game-button]
@@ -41,7 +36,6 @@
 
 (defn main []
   (dispatch [:start-new-game])
-  [:div {:style {:background "grey"
-                 :height "100vh"}}
+  [:div {:id "board-container"} 
     [board]
    ])

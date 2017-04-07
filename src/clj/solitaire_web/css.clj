@@ -35,7 +35,19 @@
     [:img.front.selected
       {:box-shadow "0 0 60px rgba(81, 203, 238, 1)"}]])
 
+(def board
+  [:#board
+    {:background "#45a173"
+     :margin-left "5%"
+     :margin-right "5%"
+     :width "90%"
+     :height "100%"}])
+
+(def board-container
+  [:#board-container
+    {:background "grey"
+     :height "100vh"}])
 
 (defstyles screen
   [:body {:color "black"}]
-  card placeholder        )
+  board-container board card placeholder        )
