@@ -29,7 +29,7 @@
              :ring-handler solitaire-web.handler/dev-handler}
 
   :garden {:builds [{:id           "screen"
-                     :source-paths ["src/cljc"]
+                     :source-paths ["src/clj"]
                      :stylesheet   solitaire-web.css/screen
                      :compiler     {:output-to     "resources/public/css/screen.css"
                                     :pretty-print? true}}]}
