@@ -1,6 +1,6 @@
 (ns solitaire-web.solitaire-panel.card-click-handler
   (:require
-    [solitaire-core.public-api :refer [stablize can-be-selected? can-move? move refresh-waste]]
+    [solitaire-core.public-api :refer [can-be-selected? can-move? move refresh-waste]]
     [solitaire-web.solitaire-panel.coordinate-helper :refer [reset-coordinates]]
     [solitaire-web.solitaire-panel.different-piles :refer [tableau-face-up-piles foundation-piles]]
     ))
@@ -25,7 +25,6 @@
     (if (and (card-selected?) (can-perform-move?))
       (-> cards 
         (move) 
-        (stablize)
         (reset-coordinates)
         (deselect-all))
       (-> cards))))
@@ -68,7 +67,6 @@
       (if (can-perform-move?)
         (-> cards
           (move)
-          (stablize)
           (reset-coordinates)
           (deselect-all))
         (-> cards
