@@ -1,7 +1,15 @@
 (ns solitaire-web.solitaire-panel.money-component
-  (:require [re-frame.core :refer [subscribe]]))
+  (:require 
+    [solitaire-web.solitaire-panel.odometer :refer [odometer]]
+    [re-frame.core :refer [subscribe]]))
 
 (defn money-component []
   (let [money (subscribe [:money])]
     (fn []
-      [:p (str "money: " @money)])))
+      (println "here")
+      [:div
+       [odometer {:id "odometer" 
+                  :class "odometer" 
+                  :value @money}]])))
+      
+

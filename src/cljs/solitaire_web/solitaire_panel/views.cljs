@@ -24,9 +24,9 @@
 (defn board []
   [:div  {:id "board"}
    [:p "Solitaire panel"]
+   [money-component]
    [deal-cards-button]
    [new-game-button]
-   [money-component]
    (for [ph placeholders]
      ^{:key ph} [placeholder-component ph])
    (for [card @(subscribe [:cards])]

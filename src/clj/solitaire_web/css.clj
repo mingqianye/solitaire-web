@@ -35,6 +35,9 @@
     [:img.front.selected
       {:box-shadow "0 0 60px rgba(81, 203, 238, 1)"}]])
 
+(def odometer
+  [:#odometer {:font-size "30px"}])
+
 (def board
   [:#board
     {:background "#45a173"
@@ -50,4 +53,4 @@
 
 (defstyles screen
   [:body {:color "black"}]
-  board-container board card placeholder        )
+  board-container board card placeholder odometer       )
