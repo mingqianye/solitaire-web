@@ -36,7 +36,15 @@
       {:box-shadow "0 0 60px rgba(81, 203, 238, 1)"}]])
 
 (def odometer
-  [:#odometer {:font-size "30px"}])
+  [:#odometer {:font-size "30px"}
+   [:.odometer-inside:before
+    {:content "'$'"
+     :display "inline-block"
+     :vertical-align "sup"
+     :opacity 0.6
+     :font-size "0.85em"
+     :margin-right "0.12em"}]
+   ])
 
 (def board
   [:#board
@@ -53,4 +61,4 @@
 
 (defstyles screen
   [:body {:color "black"}]
-  board-container board card placeholder odometer       )
+  board-container board card placeholder odometer)

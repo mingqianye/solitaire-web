@@ -27,4 +27,4 @@
     (->> cards 
       (filter #(contains? foundation-piles (:pile-name %)))
       (count)
-      (* 5))))
+      (* 5.0))))
