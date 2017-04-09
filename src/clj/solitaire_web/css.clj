@@ -1,6 +1,7 @@
 (ns solitaire-web.css
   (:require 
     [garden.def :refer [defstyles]]
+    [garden.selectors :refer [span nth-child]]
     )
   )
 
@@ -35,8 +36,11 @@
     [:img.front.selected
       {:box-shadow "0 0 60px rgba(81, 203, 238, 1)"}]])
 
+; temporary work around for 1. adding currency 2. hide last digit
+; https://github.com/HubSpot/odometer/issues/106
 (def odometer
   [:#odometer {:font-size "30px"}
+   ; add dollar sign
    [:.odometer-inside:before
     {:content "'$'"
      :display "inline-block"
@@ -44,7 +48,12 @@
      :opacity 0.6
      :font-size "0.85em"
      :margin-right "0.12em"}]
-   ])
+   ; hide first and last digit
+   [:.odometer-inside
+    [(span :.odometer-digit (nth-child :1))
+     (span :.odometer-formatting-mark (nth-child :2))
+     (span :.odometer-digit:last-child) {:display "none"}]
+    ]])
 
 (def board
   [:#board

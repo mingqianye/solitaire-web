@@ -6,13 +6,11 @@
 (defn money-component []
   (let [money (subscribe [:money])]
     (fn []
-      (println (str "---> " @money))
       [:div
        [odometer {:id "odometer" 
                   :class "odometer" 
-                  :format "(,ddd)"
-                  :minIntegerLen 3
+                  :format "(,ddd).ddd"
                   :theme "car"
-                  :value 0}]])))
+                  :value @money}]])))
       
 
