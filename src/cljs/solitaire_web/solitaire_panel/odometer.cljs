@@ -2,7 +2,7 @@
   (:require [reagent.core :as reagent]))
 
 (defn pad-1s [value]
-  (str 1 (+ 0.001 value)))
+  (+ 1000.001 value))
 
 ; Wrapper of odometer javascript library
 ; input parameter documentation can be found here:
