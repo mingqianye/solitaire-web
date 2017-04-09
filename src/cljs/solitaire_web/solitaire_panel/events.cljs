@@ -7,7 +7,9 @@
     ))
 
 (defn new-sorted-cards []
-  (->> (new-game)
+  (->> 
+    ;(new-game {:level-name :random})
+    (new-game {:level-name :aces-in-tableau-piles})
     (sort-by :card-id)
     (map-indexed (fn [idx card] (merge card (coordinate-before-deal {:card-id idx}))))
     (map (fn [card] (merge card {:selected? false})))
