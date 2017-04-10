@@ -20,7 +20,7 @@
 
 ; use this function to calculate the y offset for 
 ; tableau face up piles
-(defn offset [{:keys [pile-name cards]}]
+(defn offset-within-pile [{:keys [pile-name cards]}]
   (let [count-cards-of-pile (fn [p-name] (->> cards
                                               (filter #(= p-name (:pile-name %)))
                                               (count)))]
@@ -52,7 +52,7 @@
   (let [card      (nth cards card-id)
         pile-name (:pile-name card)
         base      (:index-in-pile card)
-        y-offset  (offset {:pile-name pile-name :cards cards})
+        y-offset  (offset-within-pile {:pile-name pile-name :cards cards})
         y-final   (+ base y-offset)]
         
   (cond 

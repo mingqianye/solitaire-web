@@ -11,7 +11,7 @@
                  [yogthos/config "0.8"]
                  [ring "1.4.0"]
                  [reanimated "0.5.0"]
-                 [solitaire-core "0.1.26"]]
+                 [solitaire-core "0.1.27"]]
 
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-externs "0.1.6"]
