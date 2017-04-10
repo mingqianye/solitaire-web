@@ -28,7 +28,7 @@
       (condp = @active
         :solitaire-panel [views/main]
         [:p "No active panel"])
-      ;[debug-component]
+      [debug-component]
     ])))
 
 (defn mount-root []

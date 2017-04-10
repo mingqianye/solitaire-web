@@ -17,9 +17,9 @@
 (defn handle-placeholder-click [{:keys [cards pile-name]}]
   (let [selected-card (first (filter #(= true (:selected? %)) cards))
         card-selected? #(not (nil? selected-card))
-        can-perform-move? #(can-move? {:m cards :i (:index selected-card) 
+        can-perform-move? #(can-move? {:m cards :i (:index-in-pile selected-card) 
                                        :from (:pile-name selected-card) :to pile-name})
-        move (fn [cards] (move {:m cards :i (:index selected-card) 
+        move (fn [cards] (move {:m cards :i (:index-in-pile selected-card) 
                                 :from (:pile-name selected-card) :to pile-name}))
         ]
     (if (and (card-selected?) (can-perform-move?))
@@ -53,11 +53,11 @@
         clicked-card  (nth cards card-id)
         
         no-card-selected? #(nil? selected-card)
-        clicked-card-can-be-selected?  #(can-be-selected? {:m cards :i (:index clicked-card) :from (:pile-name clicked-card)})
+        clicked-card-can-be-selected?  #(can-be-selected? {:m cards :i (:index-in-pile clicked-card) :from (:pile-name clicked-card)})
         
-        can-perform-move? #(can-move? {:m cards :i (:index selected-card) 
+        can-perform-move? #(can-move? {:m cards :i (:index-in-pile selected-card) 
                                        :from (:pile-name selected-card) :to (:pile-name clicked-card)})
-        move (fn [cards] (move {:m cards :i (:index selected-card) 
+        move (fn [cards] (move {:m cards :i (:index-in-pile selected-card) 
                                 :from (:pile-name selected-card) :to (:pile-name clicked-card)}))
         ]
     (if (no-card-selected?)

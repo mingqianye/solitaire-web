@@ -1,10 +1,11 @@
 (ns solitaire-web.solitaire-panel.coordinate-helper)
 
-(defn x [index]
-  (* 130 index))
+(defn x [index-in-pile]
+  (* 130 index-in-pile))
 
 (def placeholders
-    [{:pile-name :foundation-1      :x (x 3) :y 0}
+    [{:pile-name :stock             :x 0     :y 0}
+     {:pile-name :foundation-1      :x (x 3) :y 0}
      {:pile-name :foundation-2      :x (x 4) :y 0}
      {:pile-name :foundation-3      :x (x 5) :y 0}
      {:pile-name :foundation-4      :x (x 6) :y 0}
@@ -17,6 +18,8 @@
      {:pile-name :tableau-7-face-up :x (x 6) :y 150}
      ])
 
+; use this function to calculate the y offset for 
+; tableau face up piles
 (defn offset [{:keys [pile-name cards]}]
   (let [count-cards-of-pile (fn [p-name] (->> cards
                                               (filter #(= p-name (:pile-name %)))
@@ -34,7 +37,7 @@
 (defn coordinate-for [{:keys [card-id cards]}]
   (let [card      (nth cards card-id)
         pile-name (:pile-name card)
-        base      (:index card)
+        base      (:index-in-pile card)
         y-offset  (offset {:pile-name pile-name :cards cards})
         final     (+ base y-offset)]
         
