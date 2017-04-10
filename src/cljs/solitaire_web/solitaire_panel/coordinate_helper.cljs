@@ -34,16 +34,31 @@
       :tableau-7-face-up (count-cards-of-pile :tableau-7-face-down)
       0)))
 
+
+
+; What is this thing?
+; A: Find the x coordinate for the cards in waste pile.
+; The last 3 cards are treated differently: offset by the index x=200 + (0,1,2)*20
+; Other cards are centered to the index x=200 + 1*20
+(defn waste-pile-x [{:keys [card-id cards]}]
+  (let [index-in-pile (:index-in-pile (nth cards card-id))
+        waste-pile-count (->> cards (filter #(= :waste (:pile-name %))) (count))]
+    (if (>= (+ 3 index-in-pile) waste-pile-count)
+      (+ 200 (* 20 (- index-in-pile (- waste-pile-count 3))))
+      220)))
+
+
 (defn coordinate-for [{:keys [card-id cards]}]
   (let [card      (nth cards card-id)
         pile-name (:pile-name card)
         base      (:index-in-pile card)
         y-offset  (offset {:pile-name pile-name :cards cards})
-        y-final     (+ base y-offset)]
+        y-final   (+ base y-offset)]
         
   (cond 
     (= pile-name :stock)               {:x (* 0.4 base) :y (* 0.4 y-final) :z-index y-final}
-    (= pile-name :waste)               {:x (+ 200 (* 20 base)) :y 0        :z-index y-final}
+    (= pile-name :waste)               {:x (waste-pile-x {:card-id card-id :cards cards}) :y 0 :z-index y-final}
+
     (= pile-name :tableau-1-face-down) {:x (x 0) :y (+ 150 (* 20 y-final)) :z-index y-final}
     (= pile-name :tableau-2-face-down) {:x (x 1) :y (+ 150 (* 20 y-final)) :z-index y-final}
     (= pile-name :tableau-3-face-down) {:x (x 2) :y (+ 150 (* 20 y-final)) :z-index y-final}
@@ -60,10 +75,10 @@
     (= pile-name :tableau-6-face-up)   {:x (x 5) :y (+ 150 (* 20 y-final)) :z-index y-final}
     (= pile-name :tableau-7-face-up)   {:x (x 6) :y (+ 150 (* 20 y-final)) :z-index y-final}
 
-    (= pile-name :foundation-1) {:x (x 3) :y 0 :z-index y-final}
-    (= pile-name :foundation-2) {:x (x 4) :y 0 :z-index y-final}
-    (= pile-name :foundation-3) {:x (x 5) :y 0 :z-index y-final}
-    (= pile-name :foundation-4) {:x (x 6) :y 0 :z-index y-final}
+    (= pile-name :foundation-1)        {:x (x 3) :y 0                      :z-index y-final}
+    (= pile-name :foundation-2)        {:x (x 4) :y 0                      :z-index y-final}
+    (= pile-name :foundation-3)        {:x (x 5) :y 0                      :z-index y-final}
+    (= pile-name :foundation-4)        {:x (x 6) :y 0                      :z-index y-final}
     :else {:x 400 :y 400 :z 400})))
 
 
