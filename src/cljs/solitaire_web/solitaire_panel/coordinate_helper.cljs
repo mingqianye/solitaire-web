@@ -64,6 +64,7 @@
     :else {:x 400 :y 400 :z 400})))
 
 
+;not actively used
 (defn coordinate-before-deal [{:keys [card-id]}]
   {:x (* 0.2 card-id) :y (* 0.2 card-id) :z-index card-id})
 
