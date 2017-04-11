@@ -22,12 +22,14 @@
         move (fn [cards] (move {:m cards :i (:index-in-pile selected-card) 
                                 :from (:pile-name selected-card) :to pile-name}))
         ]
-    (if (and (card-selected?) (can-perform-move?))
-      (-> cards 
-        (move) 
-        (reset-coordinates)
-        (deselect-all))
-      (-> cards))))
+    (if (= :stock pile-name)
+      (-> cards (refresh-waste) (reset-coordinates))
+      (if (and (card-selected?) (can-perform-move?))
+        (-> cards 
+          (move) 
+          (reset-coordinates)
+          (deselect-all))
+        (-> cards)))))
 
 
 (defn dispatch-click [{:keys [cards card-id]}]
