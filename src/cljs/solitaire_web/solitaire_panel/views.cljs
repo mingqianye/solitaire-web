@@ -5,6 +5,7 @@
             [solitaire-web.solitaire-panel.subs]
             [solitaire-web.solitaire-panel.card-component :refer [card-component]]
             [solitaire-web.solitaire-panel.placeholder-component :refer [placeholder-component]]
+            [solitaire-web.solitaire-panel.paddle-component :refer [paddle-component]]
             [solitaire-web.solitaire-panel.money-component :refer [money-component]]
             [solitaire-web.solitaire-panel.coordinate-helper :refer [placeholders]]
             [reagent.core :as reagent]
@@ -27,6 +28,7 @@
    [money-component]
    [deal-cards-button]
    [new-game-button]
+   [paddle-component]
    (for [ph placeholders]
      ^{:key ph} [placeholder-component ph])
    (for [card @(subscribe [:cards])]

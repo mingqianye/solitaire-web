@@ -55,6 +55,23 @@
      (span :.odometer-digit:last-child) {:display "none"}]
     ]])
 
+(def glass
+  [:#paddle
+   {:position "absolute"
+    :width "10%"
+    }
+   [:.glass
+    {:box-shadow "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
+     :border "1px solid #ccc"
+     :background-color "rgba(255,255,255,.6)"
+     :border-radius "5px"
+     :backdrop-filter "blur(5px)"
+     :height "600px"
+     }
+    ]
+  ]
+  )
+
 (def board
   [:#board
     {:background "#45a173"
@@ -70,4 +87,4 @@
 
 (defstyles screen
   [:body {:color "black"}]
-  board-container board card placeholder odometer)
+  board-container board card placeholder odometer glass)
