@@ -2,8 +2,6 @@
 
 ## Development Mode
 
-### Run application:
-
 ```
 lein garden auto
 lein figwheel dev
