@@ -1,22 +1,22 @@
-(ns solitaire-web.solitaire-panel.coordinate-helper)
+(ns solitaire-web.solitaire-panel.coordinate-helper
+  (:require [solitaire-web.solitaire-panel.coordinates :refer [settings]]))
 
 (defn x [index-in-pile]
   (* 130 index-in-pile))
 
 (def placeholders
-    [{:pile-name :stock             :x 0     :y 0}
-     {:pile-name :foundation-1      :x (x 3) :y 0}
-     {:pile-name :foundation-2      :x (x 4) :y 0}
-     {:pile-name :foundation-3      :x (x 5) :y 0}
-     {:pile-name :foundation-4      :x (x 6) :y 0}
-     {:pile-name :tableau-1-face-up :x (x 0) :y 150}
-     {:pile-name :tableau-2-face-up :x (x 1) :y 150}
-     {:pile-name :tableau-3-face-up :x (x 2) :y 150}
-     {:pile-name :tableau-4-face-up :x (x 3) :y 150}
-     {:pile-name :tableau-5-face-up :x (x 4) :y 150}
-     {:pile-name :tableau-6-face-up :x (x 5) :y 150}
-     {:pile-name :tableau-7-face-up :x (x 6) :y 150}
-     ])
+  [(-> {:pile-name :stock}             (merge (get settings :1st-card-in-s)))
+   (-> {:pile-name :foundation-1}      (merge (get settings :1st-card-in-f1)))
+   (-> {:pile-name :foundation-2}      (merge (get settings :1st-card-in-f2)))
+   (-> {:pile-name :foundation-3}      (merge (get settings :1st-card-in-f3)))
+   (-> {:pile-name :foundation-4}      (merge (get settings :1st-card-in-f4)))
+   (-> {:pile-name :tableau-1-face-up} (merge (get settings :1st-card-in-td1)))
+   (-> {:pile-name :tableau-2-face-up} (merge (get settings :1st-card-in-td2)))
+   (-> {:pile-name :tableau-3-face-up} (merge (get settings :1st-card-in-td3)))
+   (-> {:pile-name :tableau-4-face-up} (merge (get settings :1st-card-in-td4)))
+   (-> {:pile-name :tableau-5-face-up} (merge (get settings :1st-card-in-td5)))
+   (-> {:pile-name :tableau-6-face-up} (merge (get settings :1st-card-in-td6)))
+   (-> {:pile-name :tableau-7-face-up} (merge (get settings :1st-card-in-td7)))])
 
 ; use this function to calculate the y offset for 
 ; tableau face up piles

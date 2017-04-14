@@ -1,10 +1,10 @@
-(ns solitaire-web.solitaire-panel.coordinate-config)
+(ns solitaire-web.solitaire-panel.coordinates)
 
-(def coordinate-config
+(def settings
   {:1st-card-in-f1   {:x (* 130 3) :y 0  }
    :1st-card-in-f2   {:x (* 130 4) :y 0  }
    :1st-card-in-f3   {:x (* 130 5) :y 0  }
-   :1st-card-in-f4   {:x (* 130 7) :y 0  }
+   :1st-card-in-f4   {:x (* 130 6) :y 0  }
    :1st-card-in-td1  {:x (* 130 0) :y 150}
    :1st-card-in-td2  {:x (* 130 1) :y 150}
    :1st-card-in-td3  {:x (* 130 2) :y 150}
