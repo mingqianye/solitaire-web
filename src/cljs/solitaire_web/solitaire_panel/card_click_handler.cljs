@@ -6,10 +6,12 @@
     ))
 
 (defn select-card [cards card-id]
-  (assoc-in (vec cards) [card-id :selected?] true))
+  (assoc-in cards [card-id :selected?] true))
 
 (defn deselect-all [cards]
-  (map #(assoc % :selected? false) cards))
+  (->> cards
+    (map #(assoc % :selected? false))
+    (vec)))
 
 (defn deselect-card [cards card-id]
   (assoc-in cards [card-id :selected?] false))
