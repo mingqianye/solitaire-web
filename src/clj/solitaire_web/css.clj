@@ -19,7 +19,8 @@
   [:div.card 
     {:position "absolute"
      :border-radius "5px"
-     :width "8%"}
+     :width "8%"
+     }
     [:img 
       {:width "100%"
        :border-radius "5px"
@@ -58,7 +59,7 @@
 (def glass
   [:#paddle
    {:position "absolute"
-    :width "10%"
+    :width "8%"
     }
    [:.glass
     {:box-shadow "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
@@ -66,7 +67,7 @@
      :background-color "rgba(255,255,255,.6)"
      :border-radius "5px"
      :backdrop-filter "blur(5px)"
-     :height "600px"
+     :height "142.812px"
      }
     ]
   ]
