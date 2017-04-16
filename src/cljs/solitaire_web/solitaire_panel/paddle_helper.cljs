@@ -4,8 +4,8 @@
 (defn get-paddle [cards]
   (let [selected-cards (filter :selected? cards)
         selected-cards-count (count selected-cards)
-        first-selected-card (first selected-cards)]
-    {:x (:x first-selected-card)
-     :y (:y first-selected-card)
-     :offset selected-cards-count
+        first-selected-card (apply min-key :index-in-pile selected-cards)]
+    {:x (or (:x first-selected-card) 100)
+     :y (or (:y first-selected-card) -100)
+     :count selected-cards-count
      }))
