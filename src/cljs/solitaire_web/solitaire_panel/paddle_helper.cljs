@@ -3,9 +3,8 @@
 ; given all cards, find out where the paddle is
 (defn get-paddle [cards]
   (let [selected-cards (filter :selected? cards)
-        selected-cards-count (count selected-cards)
         first-selected-card (apply min-key :index-in-pile selected-cards)]
     {:x (or (:x first-selected-card) 200)
      :y (or (:y first-selected-card) -100)
-     :count selected-cards-count
+     :selected-cards selected-cards
      }))

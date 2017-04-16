@@ -41,8 +41,7 @@
       (if (and (card-selected?) (can-perform-move?))
         (-> cards 
           (move) 
-          (reset-coordinates)
-          (deselect-all))
+          (reset-coordinates))
         (-> cards)))))
 
 
@@ -83,7 +82,6 @@
       (if (can-perform-move?)
         (-> cards
           (move)
-          (reset-coordinates)
-          (deselect-all))
+          (reset-coordinates))
         (-> cards
           (deselect-all))))))
