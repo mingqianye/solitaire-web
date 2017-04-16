@@ -1,14 +1,19 @@
 (ns solitaire-web.solitaire-panel.paddle-component
   (:require-macros [reagent.ratom :refer [reaction]])
-  (:require [re-frame.core :refer [subscribe dispatch]])) 
+  (:require [re-frame.core :refer [subscribe dispatch]]
+            [reanimated.core :as anim]
+            )) 
 
 (defn paddle-component []
   (let [coordinate (subscribe [:paddle])
         x (reaction (:x @coordinate))
         y (reaction (:y @coordinate))
+        cx            (anim/interpolate-to x {:duration 400})
+        cy            (anim/interpolate-to y {:duration 400})
+        in-animation? (reaction (or (not= @x @cx) (not= @y @cy)))
         ]
     (fn []
-      (let [translate-to (str "translate3d(" @x "%," @y "%, 0)")]
+      (let [translate-to (str "translate3d(" @cx "%," @cy "%, 0)")]
         [:div
          {:id "paddle"
           :style {
