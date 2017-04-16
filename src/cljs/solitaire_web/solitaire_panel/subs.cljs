@@ -30,6 +30,6 @@
       (* 5.0))))
 
 (reg-sub :paddle
-  :<- [:cards]
-  (fn [cards _]
-    (get-paddle cards)))
+  :<- [:solitaire-panel]
+  (fn [panel _]
+    (:paddle panel)))

@@ -8,17 +8,14 @@
         y (reaction (:y @coordinate))
         ]
     (fn []
-      (println (str @x " : " @y))
       (let [translate-to (str "translate3d(" @x "%," @y "%, 0)")]
         [:div
          {:id "paddle"
           :style {
-                  :transform translate-to
-                  :z-index 2}}
+                  :transform (str translate-to "scale(1.1,1.2)")
+                  :z-index 500}}
         [:div
          {:class "glass"}
-          [:p "I am a paddle blah" ]
-          [:p "I am a paddle blah" ]
           [:p "I am a paddle blah" ]
           [:p "I am a paddle blah" ]
           [:p "I am a paddle blah" ]
