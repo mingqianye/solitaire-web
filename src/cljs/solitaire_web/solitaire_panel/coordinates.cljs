@@ -23,6 +23,8 @@
    :card-in-wu-offset   {:x 20        :y 0  }
    :card-in-f-offset    {:x 0         :y 0  }
    :card-in-td-offset   {:x 0         :y 20 }
+
+   :paddle-top-offset {:x 0 :y -10}
    })
 
 (defn nth-card [{:keys [base-key offset-key offset]}]

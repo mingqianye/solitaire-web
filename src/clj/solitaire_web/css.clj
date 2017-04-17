@@ -60,14 +60,16 @@
   [:#paddle
    {:position "absolute"
     :width "8%"
+    :height "11.6624vw" ; (card-hight/card-width)*8  --> "8" is :width 8% from above line
     }
    [:.glass
     {:box-shadow "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
-     :border "1px solid #ccc"
      :background-color "rgba(255,255,255,.6)"
+     :border "1px solid #ccc"
      :border-radius "5px"
      :backdrop-filter "blur(5px)"
-     :height "142.812px"
+     :width "100%"
+     :height "100%"
      }
     ]
   ]

@@ -5,23 +5,23 @@
             )) 
 
 (defn paddle-component []
-  (let [coordinate (subscribe [:paddle])
-        x (reaction (:x @coordinate))
-        y (reaction (:y @coordinate))
+  (let [paddle (subscribe [:paddle])
+        x (reaction (:x @paddle))
+        y (reaction (:y @paddle))
         cx            (anim/interpolate-to x {:duration 400})
         cy            (anim/interpolate-to y {:duration 400})
-        in-animation? (reaction (or (not= @x @cx) (not= @y @cy)))
         ]
     (fn []
-      (let [translate-to (str "translate3d(" @cx "%," @cy "%, 0)")]
+      (let [translate-to (str "translate3d(" @cx "%," @cy "%, 0)")
+            scale-to (str "scale(1.1," (:scale-y @paddle) ")")]
         [:div
          {:id "paddle"
           :style {
-                  :transform (str translate-to "scale(1.1,1.2)")
+                  :transform translate-to
                   :z-index 500}}
         [:div
-         {:class "glass"}
-          [:p "I am a paddle blah" ]
-          [:p "I am a paddle blah" ]
-          [:p "I am a paddle blah" ]
+         {:class "glass"
+          :style { :transform-origin "center top"
+                   :transform scale-to 
+                  }}
         ]]))))
