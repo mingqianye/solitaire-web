@@ -41,6 +41,7 @@
       (let [translate-to (str "translate3d(" @cx "%," @cy "%, 0)") 
             rotate-to (str "rotate(" r "deg)")
             ;_ (println (str "rendered: " card-id))
+            _ (dispatch [:update-in-animation? card-id @in-animation?])
             ]
         [:div
           {:on-click #(dispatch [:clicked-on-card card-id])

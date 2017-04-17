@@ -22,12 +22,20 @@
   [:button {:on-click #(dispatch [:start-new-game])} 
    "New game!"])
 
+; this component gets re-render when the game changed
+(defn animation-listener []
+  (let [in-animation? (subscribe [:in-animation?])]
+    (fn []
+      (if-not @in-animation? (dispatch [:deselect-all-cards]))
+      [:p (str "in animation? " @in-animation?)])))
+
 (defn board []
   [:div  {:id "board"}
    [:p "Solitaire panel"]
    [money-component]
    [deal-cards-button]
    [new-game-button]
+   [animation-listener]
    [paddle-component]
    (for [ph placeholders]
      ^{:key ph} [placeholder-component ph])

@@ -11,10 +11,16 @@
   (fn [db _]
     (:solitaire-panel db)))
 
+
 (reg-sub :cards
   :<- [:solitaire-panel]
   (fn [panel _]
     (:cards panel)))
+
+(reg-sub :in-animation?
+  :<- [:cards]
+  (fn [cards _]
+    (not-every? false? (map :in-animation? cards))))
 
 (reg-sub :card
   :<- [:cards]

@@ -10,7 +10,7 @@
   (->> 
     (new-game {:level-name level-name})
     (sort-by :card-id)
-    (map (fn [card] (merge card {:selected? false})))
+    (map (fn [card] (merge card {:selected? false :in-animation? false})))
     (vec)))
 
 
@@ -18,9 +18,9 @@
   (fn  [db [_]]
     (let [cards (-> (prep-cards :unshuffled) (reset-coordinates))]
       (-> db
-      (assoc-in [:solitaire-panel :cards] cards)
-      (assoc-in [:solitaire-panel :placeholders] placeholders)
-        ))))
+        (assoc-in [:solitaire-panel :cards] cards)
+        (assoc-in [:solitaire-panel :placeholders] placeholders)
+          ))))
 
 (reg-event-db :deal-cards
   (fn [db [_]]
@@ -28,6 +28,16 @@
     (-> db
       (assoc-in [:solitaire-panel :cards] cards) 
       ))))
+
+(reg-event-db :deselect-all-cards
+  (fn [db [_]]
+    (let [cards (get-in db [:solitaire-panel :cards])
+          new-cards (vec (map #(assoc % :selected? false) cards))]
+      (assoc-in db [:solitaire-panel :cards] new-cards))))
+
+(reg-event-db :update-in-animation?
+  (fn [db [_ card-id is-in-animation]]
+    (assoc-in db [:solitaire-panel :cards card-id :in-animation?] is-in-animation)))
 
 (reg-event-db :clicked-on-placeholder
   (fn  [db [_ placeholder-pile-name]]
@@ -41,6 +51,4 @@
   (fn  [db [_ card-id]]
     (let [cards     (get-in db [:solitaire-panel :cards])
           new-cards (handle-click {:cards cards :card-id card-id})]
-      (-> db
-        (assoc-in [:solitaire-panel :cards] new-cards)
-        ))))
+      (assoc-in db [:solitaire-panel :cards] new-cards))))
