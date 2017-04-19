@@ -75,6 +75,13 @@
   ]
   )
 
+(def dealer
+  [:#dealer
+   {:width "5%"
+    :margin "0 auto"}
+   [:img
+    {:width "100%"}]])
+
 (def board
   [:#board
     {:background "#45a173"
@@ -90,4 +97,4 @@
 
 (defstyles screen
   [:body {:color "black"}]
-  board-container board card placeholder odometer glass)
+  board-container board card placeholder odometer glass dealer)
