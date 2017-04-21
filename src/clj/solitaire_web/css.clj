@@ -9,7 +9,7 @@
   [:div.placeholder 
     {:position "absolute"
      :z-index 0
-     :width "8%"}
+     :width "6%"}
     [:img
       {:width "100%"
        :border-radius "5px"
@@ -19,7 +19,7 @@
   [:div.card 
     {:position "absolute"
      :border-radius "5px"
-     :width "8%"
+     :width "6%"
      }
     [:img 
       {:width "100%"
@@ -59,8 +59,8 @@
 (def glass
   [:#paddle
    {:position "absolute"
-    :width "8%"
-    :height "11.6624vw" ; (card-hight/card-width)*8  --> "8" is :width 8% from above line
+    :width "6%"
+    :height "8.7467vw" ; (4.49/3.08)*6 --> (card-hight/card-width)*6  --> "6" is :width 6% from above line
     }
    [:.glass
     {:box-shadow "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
