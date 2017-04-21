@@ -32,11 +32,11 @@
 
 (defn board []
   [:div  {:id "board"}
-   [:p "Solitaire panel"]
-   [money-component]
    [deal-cards-button]
    [new-game-button]
-   [dealer-component]
+   [h-box
+    :align :center
+    :children [[dealer-component] [money-component]]]
    [animation-listener]
    [paddle-component]
    (for [ph placeholders]

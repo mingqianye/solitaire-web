@@ -77,8 +77,7 @@
 
 (def dealer
   [:#dealer
-   {:width "5%"
-    :margin "0 auto"}
+   {:width "5%" }
    [:img
     {:width "100%"}]])
 
