@@ -9,6 +9,7 @@
             [solitaire-web.solitaire-panel.dealer-component :refer [dealer-component]]
             [solitaire-web.solitaire-panel.money-component :refer [money-component]]
             [solitaire-web.solitaire-panel.coordinate-helper :refer [placeholders]]
+            [solitaire-web.solitaire-panel.coordinates :refer [board-left-padding]]
             [reagent.core :as reagent]
             [reanimated.core :as anim]
             [re-frame.core :refer [dispatch dispatch-sync subscribe]]
@@ -32,18 +33,36 @@
 
 (defn board []
   [:div  {:id "board"}
+   [animation-listener]
    [deal-cards-button]
    [new-game-button]
    [h-box
     :align :center
-    :children [[dealer-component] [money-component]]]
-   [animation-listener]
-   [paddle-component]
-   (for [ph placeholders]
-     ^{:key ph} [placeholder-component ph])
-   (for [card @(subscribe [:cards])]
-     ^{:key (:card-id card)} [card-component (:card-id card)])
-   ])
+    :size "auto"
+    :children [
+               [box :size "1" :child "box1"]
+               [box :size "1" :child "box2"]
+               [box :size "1" :justify :center :child [dealer-component]] 
+               [box :size "1" :child [money-component]]
+               [box :size "1" :child "box3"]
+               ]]
+ 
+   [h-box
+    :align :center
+    :size "auto"
+    :children [
+               ;[box :size "23.6vw" :child "box4"]
+               [box :size board-left-padding :child "box4"]
+               [box :size "1" :child 
+     [:div
+       [paddle-component]
+       (for [ph placeholders]
+         ^{:key ph} [placeholder-component ph])
+       (for [card @(subscribe [:cards])]
+         ^{:key (:card-id card)} [card-component (:card-id card)])]
+                                      ]]]]
+  )
+   
 
 
 (defn main []

@@ -5,11 +5,14 @@
     )
   )
 
+(def card-width
+  "6vw")
+
 (def placeholder
   [:div.placeholder 
     {:position "absolute"
      :z-index 0
-     :width "6%"}
+     :width card-width}
     [:img
       {:width "100%"
        :border-radius "5px"
@@ -19,7 +22,7 @@
   [:div.card 
     {:position "absolute"
      :border-radius "5px"
-     :width "6%"
+     :width card-width
      }
     [:img 
       {:width "100%"
@@ -59,8 +62,8 @@
 (def glass
   [:#paddle
    {:position "absolute"
-    :width "6%"
-    :height "8.7467vw" ; (4.49/3.08)*6 --> (card-hight/card-width)*6  --> "6" is :width 6% from above line
+    :width card-width
+    :height (str "calc(4.49/3.08*" card-width ")") ;(card-hight/card-width)*6 
     }
    [:.glass
     {:box-shadow "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
@@ -77,17 +80,14 @@
 
 (def dealer
   [:#dealer
-   {:width "5%" }
+   {:width "5vw" }
    [:img
     {:width "100%"}]])
 
 (def board
   [:#board
     {:background "#45a173"
-     :margin-left "5%"
-     :margin-right "5%"
-     :width "90%"
-     :height "100%"}])
+     :height "100vh"}])
 
 (def board-container
   [:#board-container

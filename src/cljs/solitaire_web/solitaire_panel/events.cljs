@@ -19,7 +19,6 @@
     (let [cards (-> (prep-cards :unshuffled) (reset-coordinates))]
       (-> db
         (assoc-in [:solitaire-panel :cards] cards)
-        (assoc-in [:solitaire-panel :placeholders] placeholders)
           ))))
 
 (reg-event-db :deal-cards

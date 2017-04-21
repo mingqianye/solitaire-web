@@ -28,6 +28,20 @@
    :paddle-top-offset {:x 0 :y -10}
    })
 
+; Yikes! In order to make tableau 4 in the center of the screen,
+; we need to shift the whole board to the right
+(def board-left-padding
+  (let [card-width-in-vw 6
+        t4-top-left (get-in settings [:tableau-4-face-down :x])
+        t4-center (+ t4-top-left 50)
+        t4-center-in-vw (* t4-center 0.01 card-width-in-vw)
+        screen-center-in-vw 50
+        shift-needed (- screen-center-in-vw t4-center-in-vw)]
+    (str shift-needed "vw")))
+        
+  
+
+
 (defn nth-card [{:keys [base-key offset-key offset]}]
   {:x (+ (get-in settings [base-key :x]) (* (get-in settings [offset-key :x]) offset))
    :y (+ (get-in settings [base-key :y]) (* (get-in settings [offset-key :y]) offset))
