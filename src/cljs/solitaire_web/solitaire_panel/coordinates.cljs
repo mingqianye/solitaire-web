@@ -21,6 +21,7 @@
 
    :card-in-s-offset    {:x 0.4       :y 0.4}
    :card-in-wu-offset   {:x 20        :y 0  }
+   :card-in-wd-offset   {:x 0         :y 0  }
    :card-in-f-offset    {:x 0         :y 0  }
    :card-in-td-offset   {:x 0         :y 20 }
 
@@ -53,4 +54,4 @@
         is-in-last-3? (>= translated 0)]
     (if is-in-last-3?
       (nth-card {:base-key :waste-up :offset-key :card-in-wu-offset :offset translated})
-      (nth-card {:base-key :waste-down :offset-key :card-in-wu-offset :offset 0}))))
+      (nth-card {:base-key :waste-down :offset-key :card-in-wd-offset :offset -1}))))
