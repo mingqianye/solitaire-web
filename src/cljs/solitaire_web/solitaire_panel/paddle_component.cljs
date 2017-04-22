@@ -15,13 +15,29 @@
       (let [translate-to (str "translate3d(" @cx "%," @cy "%, 0)")
             scale-to (str "scale(1.1," (:scale-y @paddle) ")")]
         [:div
+
+         
+        [:div
          {:id "paddle"
           :style {
                   :transform translate-to
                   :z-index 500}}
-        [:div
-         {:class "glass"
-          :style { :transform-origin "center top"
-                   :transform scale-to 
-                  }}
-        ]]))))
+            [:div
+             {:style {:width "2vw"
+                      :transform-origin "center bottom"
+                      :transform "translate3d(2vw, -3.8vw, 0)"
+                      :z-index 1
+                      :position "absolute"}}
+              [:img {:src "images/handlebar.png" :width "100%"}]]
+          [:div
+           {:class "glass"
+            :style { :transform-origin "center top"
+                     :transform scale-to 
+                     :z-index 0
+                    }}
+           ]
+         ]
+        
+         ]
+        
+        ))))
