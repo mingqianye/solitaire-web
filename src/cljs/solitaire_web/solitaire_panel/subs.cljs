@@ -12,6 +12,11 @@
     (:solitaire-panel db)))
 
 
+(reg-sub :show-dealer-dialog?
+  :<- [:solitaire-panel]
+  (fn [panel _]
+    (:show-dealer-dialog? panel)))
+
 (reg-sub :cards
   :<- [:solitaire-panel]
   (fn [panel _]

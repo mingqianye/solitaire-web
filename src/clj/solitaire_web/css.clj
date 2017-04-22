@@ -81,8 +81,11 @@
 (def dealer
   [:#dealer
    {:width "5vw" }
-   [:img
-    {:width "100%"}]])
+   [:#dealer-avatar
+    {:z-index 9999}
+    [:img
+      {:width "100%"}]]
+   ])
 
 (def board
   [:#board

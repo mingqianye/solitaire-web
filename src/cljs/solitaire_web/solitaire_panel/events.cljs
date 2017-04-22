@@ -13,12 +13,17 @@
     (map (fn [card] (merge card {:selected? false :in-animation? false})))
     (vec)))
 
+(reg-event-db :show-dealer-dialog
+  (fn [db [_ show?]]
+    (assoc-in db [:solitaire-panel :show-dealer-dialog?] show?)))
+
 
 (reg-event-db :start-new-game
   (fn  [db [_]]
     (let [cards (-> (prep-cards :unshuffled) (reset-coordinates))]
       (-> db
         (assoc-in [:solitaire-panel :cards] cards)
+        (assoc-in [:solitaire-panel :show-dealer-dialog?] false)
           ))))
 
 (reg-event-db :deal-cards
