@@ -90,7 +90,7 @@
 (def board
   [:#board
     {:background-image "url(/images/background.png)"
-     :background-color "#029948"
+     :background-color "#0a5315"
      :height "100vh"}])
 
 (def board-container
