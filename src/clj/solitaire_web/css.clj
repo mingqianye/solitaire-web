@@ -80,7 +80,7 @@
 
 (def dealer
   [:#dealer
-   {:width "5vw" }
+   {:width "8vw" }
    [:#dealer-avatar
     {:z-index 9999}
     [:img
