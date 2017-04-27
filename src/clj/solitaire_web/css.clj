@@ -89,13 +89,20 @@
 
 (def board
   [:#board
-    {:background-image "url(/images/background.png)"
-     :background-color "#0a5315"
-     :height "100vh"}])
+    {
+     :background-image "url(/images/left_corner.png)"
+     :background-repeat "no-repeat"
+     :background-size "30vw"
+     :height "100vh"
+     }])
 
 (def board-container
   [:#board-container
    {
+     :background-image "url(/images/background.png)"
+     :background-color "#0a5315"
+     :height "100vh"
+
      }])
 
 (defstyles screen
