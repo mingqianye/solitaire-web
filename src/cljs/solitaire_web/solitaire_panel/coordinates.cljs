@@ -25,7 +25,7 @@
    :card-in-f-offset    {:x 0         :y 0  }
    :card-in-td-offset   {:x 0         :y 20 }
 
-   :paddle-top-offset {:x 0 :y -10}
+   :paddle-top-offset {:x 0 :y -15}
    })
 
 ; Yikes! In order to make tableau 4 in the center of the screen,
