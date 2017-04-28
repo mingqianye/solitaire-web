@@ -33,6 +33,9 @@
 
 (defn board []
   [:div  {:id "board"}
+   [:div
+    {:style {:position "absolute" :right 0 :bottom 0 :width "15vw"}}
+    [:img {:src "images/latte.png" :width "100%"}]]
    [animation-listener]
    [deal-cards-button]
    [new-game-button]
@@ -60,7 +63,8 @@
          ^{:key ph} [placeholder-component ph])
        (for [card @(subscribe [:cards])]
          ^{:key (:card-id card)} [card-component (:card-id card)])]
-                                      ]]]]
+                                      ]]]
+   ]
   )
    
 
