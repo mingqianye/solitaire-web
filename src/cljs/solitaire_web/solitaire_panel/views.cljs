@@ -75,6 +75,7 @@
 
 (defn main []
   (dispatch [:start-new-game])
+  (dispatch [:show-welcome-message])
   [:div {:id "board-container"} 
     [board]
    ])

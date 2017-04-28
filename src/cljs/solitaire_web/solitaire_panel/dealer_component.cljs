@@ -10,7 +10,8 @@
 
 
 (defn dealer-main []
-  (let [showing?    (subscribe [:show-dealer-dialog?])]
+  (let [showing?    (subscribe [:show-dealer-dialog?])
+        content  (subscribe [:dealer-dialog-content])]
     (fn []
       [popover-anchor-wrapper
          :showing? showing?
@@ -21,9 +22,9 @@
                      [:img {:src "images/dealer_avatar.png"}] ]
          :popover  [popover-content-wrapper
                      :backdrop-opacity 0.3
-                     :title    "Title"
+                     :title    "Bob"
                      :on-cancel #(dispatch [:show-dealer-dialog false])
-                     :body     "Popover body text"]]
+                     :body     @content]]
       
       
       )))  ;; v0.10.0 breaking change fix (was [popover-body showing? @position dialog-data on-change])

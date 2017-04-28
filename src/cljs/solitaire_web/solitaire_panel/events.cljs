@@ -15,7 +15,7 @@
 
 (reg-event-db :show-dealer-dialog
   (fn [db [_ show?]]
-    (assoc-in db [:solitaire-panel :show-dealer-dialog?] show?)))
+    (assoc-in db [:solitaire-panel :dealer :show-dialog?] show?)))
 
 
 (reg-event-db :start-new-game
@@ -23,8 +23,14 @@
     (let [cards (-> (prep-cards :unshuffled) (reset-coordinates))]
       (-> db
         (assoc-in [:solitaire-panel :cards] cards)
-        (assoc-in [:solitaire-panel :show-dealer-dialog?] false)
           ))))
+
+(reg-event-db :show-welcome-message
+  (fn  [db [_]]
+      (-> db
+        (assoc-in [:solitaire-panel :dealer :dialog-content] "welcomeeeee!")
+        (assoc-in [:solitaire-panel :dealer :show-dialog?] true)
+          )))
 
 (reg-event-db :deal-cards
   (fn [db [_]]
