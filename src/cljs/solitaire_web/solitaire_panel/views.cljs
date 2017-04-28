@@ -31,11 +31,15 @@
       (if-not @in-animation? (dispatch [:deselect-all-cards]))
       [:p (str "in animation? " @in-animation?)])))
 
+(defn latte []
+  [:div
+   {:id "latte"}
+   [:img {:src "images/latte.png" :width "100%"}]])
+
+
 (defn board []
   [:div  {:id "board"}
-   [:div
-    {:style {:position "absolute" :right 0 :bottom 0 :width "15vw"}}
-    [:img {:src "images/latte.png" :width "100%"}]]
+   [latte]
    [animation-listener]
    [deal-cards-button]
    [new-game-button]

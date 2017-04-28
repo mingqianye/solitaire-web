@@ -94,7 +94,9 @@
      :background-repeat "no-repeat"
      :background-size "30vw"
      :height "100vh"
-     }])
+     }
+    [:#latte
+      {:position "absolute" :right 0 :bottom 0 :width "13vw"}]])
 
 (def board-container
   [:#board-container
