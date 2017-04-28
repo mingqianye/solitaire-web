@@ -23,9 +23,9 @@
                   :transform translate-to
                   :z-index 500}}
             [:div
-             {:style {:width "1.5vw"
+             {:style {:width "1vw"
                       :transform-origin "center bottom"
-                      :transform "translate3d(2.2vw, -9.5vw, 0)"
+                      :transform "translate3d(2.5vw, -6vw, 0)"
                       :z-index 1
                       :position "absolute"}}
               [:img {:src "images/handlebar.png" :width "100%"}]]
