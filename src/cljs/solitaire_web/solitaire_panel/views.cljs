@@ -18,7 +18,8 @@
 
 (defn deal-cards-button []
   [:button {:on-click #(dispatch [:deal-cards])} 
-   "deal!"])
+   "deal!"]
+  )
 
 (defn new-game-button []
   [:button {:on-click #(dispatch [:start-new-game])} 
@@ -70,7 +71,6 @@
                                       ]]]
    ]
   )
-   
 
 
 (defn main []

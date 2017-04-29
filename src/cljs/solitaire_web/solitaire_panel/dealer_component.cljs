@@ -14,12 +14,40 @@
                 [:p "Welcome to Vegas solitaire!"]
                 [:p "My name is Bob."]
                 [:p "Shall we start the game?"]
+                [:button 
+                 {:on-click #(dispatch [:set-scene :intro])}
+                 "Sure!"]
               ]})
 
+(def intro-scene
+  { :avatar-img "images/dealer/avatar-intro.png"
+    :content [:div
+                [:p "Here is how much you win so far."]
+                [:p "Shall we start?"]
+                [:button 
+                 {:on-click #(do (dispatch [:deal-cards])
+                                 (dispatch [:set-scene :in-game])
+                                 (dispatch [:set-dealer-dialog-visible false])
+                               )}
+                  "Deal!"]]})
 
+(def in-game-scene
+  { :avatar-img "images/dealer/avatar-smile.png"
+    :content [:div
+                [:p "He"]
+              ]})
+
+(def pause-game-scene
+  { :avatar-img "images/dealer/avatar-hide-hands.png"
+    :content [:div
+                [:p "What can I do for you?"]
+              ]})
 
 (def scenes
-  {:welcome welcome-scene})
+  {:welcome welcome-scene
+   :intro   intro-scene
+   :in-game in-game-scene
+   :pause-game pause-game-scene})
 
 (defn dealer-main []
   (let [dialog-visible? (subscribe [:dealer-dialog-visible?])
@@ -33,7 +61,8 @@
            :position :below-center
            :anchor   [:div
                        {:id "dealer-avatar"
-                        :on-click #(dispatch [:set-dealer-dialog-visible true])}
+                        :on-click #(do (dispatch [:set-dealer-dialog-visible true])
+                                       (dispatch [:set-scene :pause-game]))}
                        [:img {:src avatar-img}] ]
            :popover  [popover-content-wrapper
                        :backdrop-opacity 0.3
