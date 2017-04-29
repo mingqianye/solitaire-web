@@ -75,7 +75,8 @@
 
 (defn main []
   (dispatch [:start-new-game])
-  (dispatch [:set-scene :welcome])
+  (dispatch [:set-dialog :welcome])
+  (dispatch [:set-avatar :small-eyes])
   (dispatch [:set-dealer-dialog-visible true])
   [:div {:id "board-container"} 
     [board]

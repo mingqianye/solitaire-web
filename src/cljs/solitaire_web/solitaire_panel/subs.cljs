@@ -23,10 +23,15 @@
   (fn [dealer _]
     (:show-dialog? dealer)))
 
-(reg-sub :dealer-scene
+(reg-sub :dealer-avatar
   :<- [:dealer]
   (fn [dealer _]
-    (:scene dealer)))
+    (:avatar dealer)))
+
+(reg-sub :dealer-dialog
+  :<- [:dealer]
+  (fn [dealer _]
+    (:dialog dealer)))
 
 (reg-sub :cards
   :<- [:solitaire-panel]
