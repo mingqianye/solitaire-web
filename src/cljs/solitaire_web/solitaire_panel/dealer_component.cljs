@@ -8,23 +8,31 @@
             [reanimated.core :as anim]
             )) 
 
+(def avatar-image
+  {:smile "images/dealer/avatar-smile.png"
+   :small-eyes "images/dealer/avatar-small-eyes.png" }
+  )
+
 
 (defn dealer-main []
-  (let [showing?    (subscribe [:show-dealer-dialog?])
-        content  (subscribe [:dealer-dialog-content])]
+  (let [dealer  (subscribe [:dealer])]
     (fn []
       [popover-anchor-wrapper
-         :showing? showing?
+         :showing? (reaction (:show-dialog? @dealer))
          :position :below-center
          :anchor   [:div
                      {:id "dealer-avatar"
-                      :on-click #(dispatch [:show-dealer-dialog true]) }
-                     [:img {:src "images/dealer_avatar.png"}] ]
+                      :on-click #(do (dispatch [:show-dealer-dialog true])
+                                     (dispatch [:make-dealer :small-eyes])
+                                   ) }
+                     [:img {:src ((:avatar-face @dealer) avatar-image)}] ]
          :popover  [popover-content-wrapper
                      :backdrop-opacity 0.3
                      :title    "Bob"
-                     :on-cancel #(dispatch [:show-dealer-dialog false])
-                     :body     @content]]
+                     :on-cancel #(do (dispatch [:show-dealer-dialog false])
+                                     (dispatch [:make-dealer :smile])
+                                     )
+                     :body     (:dialog-content @dealer)]]
       
       
       )))  ;; v0.10.0 breaking change fix (was [popover-body showing? @position dialog-data on-change])

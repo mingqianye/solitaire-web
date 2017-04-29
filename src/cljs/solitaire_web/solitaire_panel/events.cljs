@@ -17,6 +17,9 @@
   (fn [db [_ show?]]
     (assoc-in db [:solitaire-panel :dealer :show-dialog?] show?)))
 
+(reg-event-db :make-dealer
+  (fn [db [_ face]]
+    (assoc-in db [:solitaire-panel :dealer :avatar-face] face)))
 
 (reg-event-db :start-new-game
   (fn  [db [_]]
@@ -28,9 +31,10 @@
 (reg-event-db :show-welcome-message
   (fn  [db [_]]
       (-> db
-        (assoc-in [:solitaire-panel :dealer :dialog-content] "welcomeeeee!")
-        (assoc-in [:solitaire-panel :dealer :show-dialog?] true)
-          )))
+        (assoc-in [:solitaire-panel :dealer] 
+          {:dialog-content "Welcome to Vegas solitaire. Shall we start the game?"
+           :show-dialog? true
+           :avatar-face :small-eyes}))))
 
 (reg-event-db :deal-cards
   (fn [db [_]]

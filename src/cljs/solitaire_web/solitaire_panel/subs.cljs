@@ -16,17 +16,6 @@
   (fn [panel _]
     (:dealer panel)))
 
-
-(reg-sub :show-dealer-dialog?
-  :<- [:dealer]
-  (fn [dealer _]
-    (:show-dialog? dealer)))
-
-(reg-sub :dealer-dialog-content
-  :<- [:dealer]
-  (fn [dealer _]
-    (:dialog-content dealer)))
-
 (reg-sub :cards
   :<- [:solitaire-panel]
   (fn [panel _]
