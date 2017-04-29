@@ -16,6 +16,18 @@
   (fn [panel _]
     (:dealer panel)))
 
+
+
+(reg-sub :dealer-dialog-visible?
+  :<- [:dealer]
+  (fn [dealer _]
+    (:show-dialog? dealer)))
+
+(reg-sub :dealer-scene
+  :<- [:dealer]
+  (fn [dealer _]
+    (:scene dealer)))
+
 (reg-sub :cards
   :<- [:solitaire-panel]
   (fn [panel _]

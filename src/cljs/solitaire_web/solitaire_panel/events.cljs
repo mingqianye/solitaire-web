@@ -13,14 +13,6 @@
     (map (fn [card] (merge card {:selected? false :in-animation? false})))
     (vec)))
 
-(reg-event-db :show-dealer-dialog
-  (fn [db [_ show?]]
-    (assoc-in db [:solitaire-panel :dealer :show-dialog?] show?)))
-
-(reg-event-db :make-dealer
-  (fn [db [_ face]]
-    (assoc-in db [:solitaire-panel :dealer :avatar-face] face)))
-
 (reg-event-db :start-new-game
   (fn  [db [_]]
     (let [cards (-> (prep-cards :unshuffled) (reset-coordinates))]
@@ -28,13 +20,13 @@
         (assoc-in [:solitaire-panel :cards] cards)
           ))))
 
-(reg-event-db :show-welcome-message
-  (fn  [db [_]]
-      (-> db
-        (assoc-in [:solitaire-panel :dealer] 
-          {:dialog-content "Welcome to Vegas solitaire. Shall we start the game?"
-           :show-dialog? true
-           :avatar-face :small-eyes}))))
+(reg-event-db :set-dealer-dialog-visible
+  (fn [db [_ show?]]
+    (assoc-in db [:solitaire-panel :dealer :show-dialog?] show?)))
+
+(reg-event-db :set-scene
+  (fn [db [_ scene]]
+    (assoc-in db [:solitaire-panel :dealer :scene] scene)))
 
 (reg-event-db :deal-cards
   (fn [db [_]]

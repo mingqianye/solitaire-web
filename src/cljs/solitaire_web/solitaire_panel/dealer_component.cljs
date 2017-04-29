@@ -8,34 +8,39 @@
             [reanimated.core :as anim]
             )) 
 
-(def avatar-image
-  {:smile "images/dealer/avatar-smile.png"
-   :small-eyes "images/dealer/avatar-small-eyes.png" }
-  )
+(def welcome-scene
+  { :avatar-img "images/dealer/avatar-small-eyes.png"
+    :content [:div
+                [:p "Welcome to Vegas solitaire!"]
+                [:p "My name is Bob."]
+                [:p "Shall we start the game?"]
+              ]})
 
+
+
+(def scenes
+  {:welcome welcome-scene})
 
 (defn dealer-main []
-  (let [dealer  (subscribe [:dealer])]
+  (let [dialog-visible? (subscribe [:dealer-dialog-visible?])
+        cur-scene       (subscribe  [:dealer-scene])]
     (fn []
-      [popover-anchor-wrapper
-         :showing? (reaction (:show-dialog? @dealer))
-         :position :below-center
-         :anchor   [:div
-                     {:id "dealer-avatar"
-                      :on-click #(do (dispatch [:show-dealer-dialog true])
-                                     (dispatch [:make-dealer :small-eyes])
-                                   ) }
-                     [:img {:src ((:avatar-face @dealer) avatar-image)}] ]
-         :popover  [popover-content-wrapper
-                     :backdrop-opacity 0.3
-                     :title    "Bob"
-                     :on-cancel #(do (dispatch [:show-dealer-dialog false])
-                                     (dispatch [:make-dealer :smile])
-                                     )
-                     :body     (:dialog-content @dealer)]]
+      (let [avatar-img (get-in scenes [@cur-scene :avatar-img])
+            content    (get-in scenes [@cur-scene :content])]
       
-      
-      )))  ;; v0.10.0 breaking change fix (was [popover-body showing? @position dialog-data on-change])
+        [popover-anchor-wrapper
+           :showing? dialog-visible?
+           :position :below-center
+           :anchor   [:div
+                       {:id "dealer-avatar"
+                        :on-click #(dispatch [:set-dealer-dialog-visible true])}
+                       [:img {:src avatar-img}] ]
+           :popover  [popover-content-wrapper
+                       :backdrop-opacity 0.3
+                       :title    "Bob"
+                       :on-cancel #(dispatch [:set-dealer-dialog-visible false])
+                       :body     content]]
+     )))) 
 
 (defn dealer-component []
   [:div 
