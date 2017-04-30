@@ -54,7 +54,6 @@
                [box :size "1" :child [money-component]]
                [box :size "1" :child "box3"]
                ]]
- 
    [h-box
     :align :center
     :size "auto"

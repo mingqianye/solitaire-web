@@ -2,7 +2,7 @@
   (:require [re-frame.core :refer [dispatch]])) 
 
 (defn placeholder-component [{:keys [pile-name x y]}]
-  (let [translate-to (str "translate(" x "%," y "%)")]
+  (let [translate-to (str "translate3d(" x "%," y "%, 0)")]
     [:div
       {:on-click #(dispatch [:clicked-on-placeholder pile-name])
        :on-double-click #(println "doubled!")
