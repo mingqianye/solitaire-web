@@ -18,6 +18,7 @@
     (let [cards (-> (prep-cards :unshuffled) (reset-coordinates))]
       (-> db
         (assoc-in [:solitaire-panel :cards] cards)
+        (assoc-in [:solitaire-panel :stock-placehold-num-clicks] 0)
           ))))
 
 (reg-event-db :set-dealer-dialog-visible
@@ -54,7 +55,11 @@
     (let [cards     (get-in db [:solitaire-panel :cards])
           new-cards (handle-placeholder-click {:cards cards 
                                                :pile-name placeholder-pile-name})]
-      (assoc-in db [:solitaire-panel :cards] new-cards))))
+      (-> db
+        (assoc-in [:solitaire-panel :cards] new-cards)
+        (update-in [:solitaire-panel :stock-placehold-num-clicks] 
+          (get {:stock inc} placeholder-pile-name identity))
+        ))))
 
 
 (reg-event-db :clicked-on-card

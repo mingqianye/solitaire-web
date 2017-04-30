@@ -28,6 +28,10 @@
 (defn deselect-card [cards card-id]
   (assoc-in cards [card-id :selected?] false))
 
+(defn handle-stock-placeholder-click [{:keys [cards]}]
+  (-> cards (refresh-waste) (reset-coordinates)))
+
+
 (defn handle-placeholder-click [{:keys [cards pile-name]}]
   (let [selected-card (first-selected-card cards)
         card-selected? #(not (nil? selected-card))

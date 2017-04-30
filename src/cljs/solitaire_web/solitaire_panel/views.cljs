@@ -50,8 +50,8 @@
     :children [
                [box :size "1" :child "box1"]
                [box :size "1" :child "box2"]
-               [box :size "1" :justify :center :child [dealer-component]] 
-               [box :size "1" :child [money-component]]
+               [box :size "none" :justify :center :align-self :center :child [dealer-component]] 
+               [box :size "1" :align-self :center :child [money-component]]
                [box :size "1" :child "box3"]
                ]]
    [h-box
