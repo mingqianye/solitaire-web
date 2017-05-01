@@ -29,7 +29,8 @@
                      (dispatch [:set-dialog :pause-game])
                      (dispatch [:set-dealer-dialog-visible false])
                    )}
-      "Deal!"]])
+      "Deal!"]
+   ])
 
 (def in-game-dialog
   [:div
@@ -42,7 +43,14 @@
 
 (def won-game-dialog
   [:div
-    [:p "Congrats!"]])
+    [:p "Congrats!"]
+    [:button 
+     {:on-click #(do (dispatch [:deal-cards])
+                     (dispatch [:set-avatar :smile])
+                     (dispatch [:set-dialog :pause-game])
+                     (dispatch [:set-dealer-dialog-visible false])
+                   )}
+     "Deal again"]])
 
 (def dialogs
   {:welcome welcome-dialog
