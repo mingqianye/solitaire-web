@@ -47,17 +47,19 @@
     :align :center
     :size "auto"
     :children [
-               [box :size "1" :child "box1"]
-               [box :size "1" :child "box2"]
+               [box :size "1" :child ""]
+               [box :size "1" :child ""]
                [box :size "none" :justify :center :align-self :center :child [dealer-component]] 
                [box :size "1" :align-self :center :child [money-component]]
-               [box :size "1" :child "box3"]
+               [box :size "1" :child ""]
                ]]
+   [:br]
+   [:br]
    [h-box
     :align :center
     :size "auto"
     :children [
-               [box :size board-left-padding :child "box4"]
+               [box :size board-left-padding :child ""]
                [box :size "1" :child 
      [:div
        [paddle-component]

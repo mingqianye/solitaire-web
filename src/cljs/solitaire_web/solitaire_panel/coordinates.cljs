@@ -8,13 +8,13 @@
    :foundation-2        {:x (* 130 4) :y 0  }
    :foundation-3        {:x (* 130 5) :y 0  }
    :foundation-4        {:x (* 130 6) :y 0  }
-   :tableau-1-face-down {:x (* 130 0) :y 150}
-   :tableau-2-face-down {:x (* 130 1) :y 150}
-   :tableau-3-face-down {:x (* 130 2) :y 150}
-   :tableau-4-face-down {:x (* 130 3) :y 150}
-   :tableau-5-face-down {:x (* 130 4) :y 150}
-   :tableau-6-face-down {:x (* 130 5) :y 150}
-   :tableau-7-face-down {:x (* 130 6) :y 150}
+   :tableau-1-face-down {:x (* 130 0) :y 130}
+   :tableau-2-face-down {:x (* 130 1) :y 130}
+   :tableau-3-face-down {:x (* 130 2) :y 130}
+   :tableau-4-face-down {:x (* 130 3) :y 130}
+   :tableau-5-face-down {:x (* 130 4) :y 130}
+   :tableau-6-face-down {:x (* 130 5) :y 130}
+   :tableau-7-face-down {:x (* 130 6) :y 130}
    :stock               {:x 0         :y 0}
    :waste-up            {:x 200       :y 0}
    :waste-down          {:x 220       :y 0}
@@ -26,6 +26,8 @@
    :card-in-td-offset   {:x 0         :y 20 }
 
    :paddle-top-offset {:x 0 :y -15}
+   
+   :paddle-default {:x 200 :y -500}
    })
 
 ; Yikes! In order to make tableau 4 in the center of the screen,
