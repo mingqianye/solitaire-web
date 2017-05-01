@@ -88,8 +88,8 @@
                        [:img {:src avatar-img}] ]
            :popover  [popover-content-wrapper
                        :close-button? false
-                       :backdrop-opacity 0.3
-                       :title    "Bob"
+                       :backdrop-opacity 0.6
+                       ;:title    "Bob"
                        :on-cancel #(do 
                                      (dispatch [:set-avatar :smile])
                                      (dispatch [:set-dealer-dialog-visible false]))

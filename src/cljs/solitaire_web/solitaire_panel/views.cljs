@@ -36,10 +36,18 @@
    {:id "latte"}
    [:img {:src "images/latte.png" :width "100%"}]])
 
+(defn balance []
+  [:div
+   {:style {:position "absolute" :left 0 :bottom 0}}
+   [:i {:class "zmdi zmdi-balance zmdi-hc-5x"}]
+   "$ 50000"
+   ])
+
 
 (defn board []
   [:div  {:id "board"}
    [latte]
+   [balance]
    [animation-listener]
    [deal-cards-button]
    [new-game-button]

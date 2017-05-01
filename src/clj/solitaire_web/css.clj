@@ -60,12 +60,6 @@
     ]])
 
 (def glass
-  [:#paddle
-   {:position "absolute"
-    :width card-width
-    :height (str "calc(4.49/3.08*" card-width ")") ;(card-hight/card-width)*6 
-    }
-   [:.glass
     {:box-shadow "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
      :background-color "rgba(255,255,255,.6)"
      :border "1px solid #ccc"
@@ -73,10 +67,21 @@
      :backdrop-filter "blur(5px)"
      :width "100%"
      :height "100%"
-     }
+     })
+
+
+(def paddle
+  [:#paddle
+   {:position "absolute"
+    :width card-width
+    :height (str "calc(4.49/3.08*" card-width ")") ;(card-hight/card-width)*6 
+    }
+   [:.glass
+    glass
     ]
   ]
   )
+
 
 (def dealer
   [:#dealer
@@ -109,4 +114,4 @@
 
 (defstyles screen
   [:body {:color "black"}]
-  board-container board card placeholder odometer glass dealer)
+  board-container board card placeholder odometer paddle dealer)
