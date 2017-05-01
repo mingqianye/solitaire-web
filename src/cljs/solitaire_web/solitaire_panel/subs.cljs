@@ -11,12 +11,15 @@
   (fn [db _]
     (:solitaire-panel db)))
 
+(reg-sub :able-to-refresh-stock?
+  :<- [:solitaire-panel]
+  (fn [panel _]
+    (< (:stock-placeholder-num-clicks panel) 2))) ; can only go through the deck 3 times
+
 (reg-sub :dealer
   :<- [:solitaire-panel]
   (fn [panel _]
     (:dealer panel)))
-
-
 
 (reg-sub :dealer-dialog-visible?
   :<- [:dealer]
