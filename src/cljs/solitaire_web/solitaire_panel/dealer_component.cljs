@@ -93,7 +93,8 @@
                        :on-cancel #(do 
                                      (dispatch [:set-avatar :smile])
                                      (dispatch [:set-dealer-dialog-visible false]))
-                       :body     content]]
+                       :body     [:div {:style {:width "30vw" :height "30vH"}}
+                                   content]]]
      )))) 
 
 (defn dealer-component []

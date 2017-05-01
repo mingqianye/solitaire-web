@@ -54,7 +54,6 @@
                [box :size "1" :child ""]
                ]]
    [:br]
-   [:br]
    [h-box
     :align :center
     :size "auto"
