@@ -10,7 +10,6 @@
 
 (defn dev-setup []
   (when config/debug?
-    (enable-console-print!)
     (println "dev mode")))
 
 (defn debug-component []
@@ -39,5 +38,6 @@
 (defn ^:export init []
   (dispatch-sync [:initialise-db])
   (dispatch-sync [:set-active-panel :solitaire-panel])
+  (enable-console-print!)
   (dev-setup)
   (mount-root))
