@@ -2,8 +2,8 @@
   (:require
     [re-frame.core :refer [reg-event-db]]
     [solitaire-core.public-api :refer [new-game]]
-    [solitaire-web.solitaire-panel.coordinate-helper :refer [reset-coordinates placeholders]]
-    [solitaire-web.solitaire-panel.card-click-handler :refer [handle-placeholder-click handle-click]]
+    [solitaire-web.solitaire-panel.coordinate-helper :refer [reset-coordinates]]
+    [solitaire-web.solitaire-panel.card-click-handler :refer [handle-stock-placeholder-click handle-placeholder-click handle-click]]
     ))
 
 (defn prep-cards [level-name]
@@ -18,7 +18,7 @@
     (let [cards (-> (prep-cards :unshuffled) (reset-coordinates))]
       (-> db
         (assoc-in [:solitaire-panel :cards] cards)
-        (assoc-in [:solitaire-panel :stock-placehold-num-clicks] 0)
+        (assoc-in [:solitaire-panel :stock-placeholder-num-clicks] 0)
           ))))
 
 (reg-event-db :set-dealer-dialog-visible
@@ -50,6 +50,17 @@
   (fn [db [_ card-id is-in-animation]]
     (assoc-in db [:solitaire-panel :cards card-id :in-animation?] is-in-animation)))
 
+(reg-event-db :clicked-on-stock-placeholder
+  (fn  [db _]
+    (let [cards     (get-in db [:solitaire-panel :cards])
+          new-cards (handle-stock-placeholder-click {:cards cards})
+          _ (println "clicked on stock ph")
+          ]
+      (-> db
+        (assoc-in [:solitaire-panel :cards] new-cards)
+        (update-in [:solitaire-panel :stock-placeholder-num-clicks] inc)))
+        ))
+
 (reg-event-db :clicked-on-placeholder
   (fn  [db [_ placeholder-pile-name]]
     (let [cards     (get-in db [:solitaire-panel :cards])
@@ -57,8 +68,6 @@
                                                :pile-name placeholder-pile-name})]
       (-> db
         (assoc-in [:solitaire-panel :cards] new-cards)
-        (update-in [:solitaire-panel :stock-placehold-num-clicks] 
-          (get {:stock inc} placeholder-pile-name identity))
         ))))
 
 

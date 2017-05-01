@@ -4,11 +4,10 @@
   (:require [solitaire-web.solitaire-panel.events]
             [solitaire-web.solitaire-panel.subs]
             [solitaire-web.solitaire-panel.card-component :refer [card-component]]
-            [solitaire-web.solitaire-panel.placeholder-component :refer [placeholder-component]]
+            [solitaire-web.solitaire-panel.placeholder-component :refer [stock-placeholder-component placeholder-component placeholder-components]]
             [solitaire-web.solitaire-panel.paddle-component :refer [paddle-component]]
             [solitaire-web.solitaire-panel.dealer-component :refer [dealer-component]]
             [solitaire-web.solitaire-panel.money-component :refer [money-component]]
-            [solitaire-web.solitaire-panel.coordinate-helper :refer [placeholders]]
             [solitaire-web.solitaire-panel.coordinates :refer [board-left-padding]]
             [reagent.core :as reagent]
             [reanimated.core :as anim]
@@ -58,13 +57,13 @@
     :align :center
     :size "auto"
     :children [
-               ;[box :size "23.6vw" :child "box4"]
                [box :size board-left-padding :child "box4"]
                [box :size "1" :child 
      [:div
        [paddle-component]
-       (for [ph placeholders]
-         ^{:key ph} [placeholder-component ph])
+       [stock-placeholder-component]
+       [placeholder-components]
+
        (for [card @(subscribe [:cards])]
          ^{:key (:card-id card)} [card-component (:card-id card)])]
                                       ]]]

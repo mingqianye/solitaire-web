@@ -31,7 +31,6 @@
 (defn handle-stock-placeholder-click [{:keys [cards]}]
   (-> cards (refresh-waste) (reset-coordinates)))
 
-
 (defn handle-placeholder-click [{:keys [cards pile-name]}]
   (let [selected-card (first-selected-card cards)
         card-selected? #(not (nil? selected-card))
@@ -40,13 +39,11 @@
         move (fn [cards] (move {:m cards :i (:index-in-pile selected-card) 
                                 :from (:pile-name selected-card) :to pile-name}))
         ]
-    (if (= :stock pile-name)
-      (-> cards (refresh-waste) (reset-coordinates))
-      (if (and (card-selected?) (can-perform-move?))
-        (-> cards 
-          (move) 
-          (reset-coordinates))
-        (-> cards)))))
+    (if (and (card-selected?) (can-perform-move?))
+      (-> cards 
+        (move) 
+        (reset-coordinates))
+      (-> cards))))
 
 
 (defn dispatch-click [{:keys [cards card-id]}]
