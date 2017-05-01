@@ -1,6 +1,6 @@
 (ns solitaire-web.solitaire-panel.subs
   (:require [re-frame.core :refer [reg-sub subscribe]]
-            [solitaire-core.public-api :refer [can-be-selected?]]
+            [solitaire-core.public-api :refer [can-be-selected? won?]]
             [solitaire-web.solitaire-panel.different-piles :refer [foundation-piles]]
             [solitaire-web.solitaire-panel.paddle-helper :refer [get-paddle]]
             ))
@@ -16,6 +16,11 @@
   (fn [panel _]
     (< (:stock-placeholder-num-clicks panel) 2))) ; can only go through the deck 3 times
 
+(reg-sub :won?
+  :<- [:solitaire-panel]
+  (fn [panel _]
+    (:won? panel)))
+
 (reg-sub :dealer
   :<- [:solitaire-panel]
   (fn [panel _]
@@ -23,18 +28,25 @@
 
 (reg-sub :dealer-dialog-visible?
   :<- [:dealer]
-  (fn [dealer _]
-    (:show-dialog? dealer)))
+  :<- [:won?]
+  (fn [[dealer won?] _]
+    (or won? (:show-dialog? dealer))))
 
 (reg-sub :dealer-avatar
   :<- [:dealer]
-  (fn [dealer _]
-    (:avatar dealer)))
+  :<- [:won?]
+  (fn [[dealer won?] _]
+    (if won?
+      :won
+      (:avatar dealer))))
 
 (reg-sub :dealer-dialog
   :<- [:dealer]
-  (fn [dealer _]
-    (:dialog dealer)))
+  :<- [:won?]
+  (fn [[dealer won?] _]
+    (if won?
+      :won-game
+      (:dialog dealer))))
 
 (reg-sub :cards
   :<- [:solitaire-panel]

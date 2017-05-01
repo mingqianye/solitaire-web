@@ -40,17 +40,25 @@
   [:div
     [:p "What can I do for you?"]])
 
+(def won-game-dialog
+  [:div
+    [:p "Congrats!"]])
+
 (def dialogs
   {:welcome welcome-dialog
    :intro   intro-dialog
    :in-game in-game-dialog
-   :pause-game pause-game-dialog})
+   :pause-game pause-game-dialog
+   :won-game won-game-dialog
+   })
 
 (def avatars
   {:small-eyes "images/dealer/avatar-small-eyes.png"
    :intro      "images/dealer/avatar-intro.png"
    :smile      "images/dealer/avatar-smile.png"
-   :hide-hands "images/dealer/avatar-hide-hands.png"})
+   :hide-hands "images/dealer/avatar-hide-hands.png"
+   :won        "images/dealer/avatar-cards.png"
+   })
 
 
 (defn dealer-main []
