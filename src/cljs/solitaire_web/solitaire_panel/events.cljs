@@ -60,7 +60,6 @@
   (fn  [db _]
     (let [cards     (get-in db [:solitaire-panel :cards])
           new-cards (handle-stock-placeholder-click {:cards cards})
-          _ (println "clicked on stock ph")
           ]
       (-> db
         (assoc-in [:solitaire-panel :cards] new-cards)
@@ -85,3 +84,7 @@
         (assoc-in [:solitaire-panel :cards] new-cards)
         (assoc-in [:solitaire-panel :won?] (won? new-cards))
         ))))
+
+(reg-event-db :set-balance
+  (fn  [db [_ new-balance]]
+    (assoc-in db [:solitaire-panel :balance] new-balance)))

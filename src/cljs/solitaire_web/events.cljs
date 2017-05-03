@@ -4,7 +4,7 @@
     ))
 
 (reg-event-db :initialise-db
-  (fn  [db [_ _]]
+  (fn  [db _]
     {}))
 
 (reg-event-db :set-active-panel

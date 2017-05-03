@@ -37,20 +37,18 @@
    [:img {:src "images/latte.png" :width "100%"}]])
 
 (defn balance []
-  [:div
-   {:style {:position "absolute" :left 0 :bottom 0}}
-   [:i {:class "zmdi zmdi-balance zmdi-hc-5x"}]
-   "$ 50000"
-   ])
+  (let [balance (subscribe [:balance])]
+    (fn []
+    [:div
+     {:style {:position "absolute" :left 0 :bottom 0}}
+     [:i {:class "zmdi zmdi-balance zmdi-hc-5x"}]
+     (str "$ " @balance)
+     ])))
 
 
 (defn board []
   [:div  {:id "board"}
-   [latte]
-   [balance]
-   [animation-listener]
-   [deal-cards-button]
-   [new-game-button]
+   [:br]
    [h-box
     :align :center
     :size "auto"
@@ -76,6 +74,11 @@
        (for [card @(subscribe [:cards])]
          ^{:key (:card-id card)} [card-component (:card-id card)])]
                                       ]]]
+   [animation-listener]
+   [deal-cards-button]
+   [new-game-button]
+   [latte]
+   [balance]
    ]
   )
 
@@ -85,6 +88,7 @@
   (dispatch [:set-dialog :welcome])
   (dispatch [:set-avatar :small-eyes])
   (dispatch [:set-dealer-dialog-visible true])
+  (dispatch [:set-balance 100])
   [:div {:id "board-container"} 
     [board]
    ])

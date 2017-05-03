@@ -75,3 +75,8 @@
   :<- [:cards]
   (fn [cards _]
     (get-paddle cards)))
+
+(reg-sub :balance
+  :<- [:solitaire-panel]
+  (fn [panel _]
+    (:balance panel)))
