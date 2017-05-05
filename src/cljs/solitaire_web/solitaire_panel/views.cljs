@@ -8,6 +8,7 @@
             [solitaire-web.solitaire-panel.paddle-component :refer [paddle-component]]
             [solitaire-web.solitaire-panel.dealer-component :refer [dealer-component]]
             [solitaire-web.solitaire-panel.money-component :refer [money-component]]
+            [solitaire-web.solitaire-panel.iphone-component :refer [iphone-component]]
             [solitaire-web.solitaire-panel.coordinates :refer [board-left-padding]]
             [reagent.core :as reagent]
             [reanimated.core :as anim]
@@ -36,14 +37,6 @@
    {:id "latte"}
    [:img {:src "images/latte.png" :width "100%"}]])
 
-(defn balance []
-  (let [balance (subscribe [:balance])]
-    (fn []
-    [:div
-     {:style {:position "absolute" :left 0 :bottom 0}}
-     [:i {:class "zmdi zmdi-balance zmdi-hc-5x"}]
-     (str "$ " @balance)
-     ])))
 
 
 (defn board []
@@ -78,7 +71,7 @@
    [deal-cards-button]
    [new-game-button]
    [latte]
-   [balance]
+   [iphone-component]
    ]
   )
 
