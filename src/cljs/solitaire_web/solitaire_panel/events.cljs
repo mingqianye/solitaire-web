@@ -18,6 +18,7 @@
   (fn  [db [_]]
     (let [cards (prep-cards :unshuffled)]
       (-> db
+        (assoc-in [:solitaire-panel :transactions] [])
         (assoc-in [:solitaire-panel :cards] cards)
         (assoc-in [:solitaire-panel :won?] false)
         (assoc-in [:solitaire-panel :stock-placeholder-num-clicks] 0)
@@ -88,3 +89,8 @@
 (reg-event-db :set-balance
   (fn  [db [_ new-balance]]
     (assoc-in db [:solitaire-panel :balance] new-balance)))
+
+(reg-event-db :add-transaction
+  (fn  [db [_ amount msg]]
+    (update-in db [:solitaire-panel :transactions] #(conj % {:amount amount
+                                                             :msg msg}))))

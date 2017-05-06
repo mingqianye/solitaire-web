@@ -21,6 +21,21 @@
   (fn [panel _]
     (:won? panel)))
 
+(reg-sub :transactions
+  :<- [:solitaire-panel]
+  (fn [panel _]
+    (:transactions panel)))
+
+(reg-sub :balance
+  :<- [:transactions]
+  (fn [transactions _]
+    (apply + (map :amount transactions))))
+
+(reg-sub :reversed-transactions
+  :<- [:transactions]
+  (fn [transactions _]
+    (reverse transactions)))
+
 (reg-sub :dealer
   :<- [:solitaire-panel]
   (fn [panel _]
@@ -76,7 +91,3 @@
   (fn [cards _]
     (get-paddle cards)))
 
-(reg-sub :balance
-  :<- [:solitaire-panel]
-  (fn [panel _]
-    (:balance panel)))

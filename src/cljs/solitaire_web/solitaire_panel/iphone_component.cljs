@@ -4,8 +4,14 @@
     [re-com.core     :refer [h-box box v-box line md-icon-button]]
     ))
 
+(defn visualize-transaction-amount [amount]
+  (let [negativity (if (>= amount 0) "+" "-")
+        pure-amount (max amount (* -1 amount))]
+    (str negativity "$" pure-amount)))
+
 (defn iphone-screen []
-  (let [balance (subscribe [:balance])]
+  (let [balance (subscribe [:balance])
+        transactions (subscribe [:reversed-transactions])]
     (fn []
       [:div
        {:style {:color "#545454" :font-size "1vw"}}
@@ -23,12 +29,13 @@
 
         [:hr {:style {:margin-top "0.3vw" :margin-bottom "0.3vw" :color "grey" :border-top "1px solid grey"}}]
 
-        [h-box
-         :children [
-                    [box :size "none" :child "1) VEGAS SOLI. BUY-IN..."]
-                    [box :size "1" :child ""]
-                    [box :size "none" :child (str "-$ 52")]
-                    ]]
+        (for [t @transactions]
+          ^{:key t}
+          [h-box
+           :children [
+                      [box :size "none" :child (:msg t)]
+                      [box :size "1" :child ""]
+                      [box :size "none" :child (visualize-transaction-amount (:amount t))]]])
        ]
       )))
 

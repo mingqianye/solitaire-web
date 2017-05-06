@@ -65,8 +65,7 @@
        [placeholder-components]
 
        (for [card @(subscribe [:cards])]
-         ^{:key (:card-id card)} [card-component (:card-id card)])]
-                                      ]]]
+         ^{:key (:card-id card)} [card-component (:card-id card)])]]]]
    [animation-listener]
    [deal-cards-button]
    [new-game-button]
@@ -81,7 +80,7 @@
   (dispatch [:set-dialog :welcome])
   (dispatch [:set-avatar :small-eyes])
   (dispatch [:set-dealer-dialog-visible true])
-  (dispatch [:set-balance 100])
+  (dispatch [:add-transaction 100 "ACCOUNT DEPOSIT..."])
   [:div {:id "board-container"} 
     [board]
    ])
