@@ -92,5 +92,6 @@
 
 (reg-event-db :add-transaction
   (fn  [db [_ amount msg]]
-    (update-in db [:solitaire-panel :transactions] #(conj % {:amount amount
+    (update-in db [:solitaire-panel :transactions] #(conj % {:id (inc (count %))
+                                                             :amount amount
                                                              :msg msg}))))
