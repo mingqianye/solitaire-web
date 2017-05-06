@@ -38,8 +38,8 @@
 (reg-event-db :deal-cards
   (fn [db [_]]
     (let [
-          cards (prep-cards :shuffled)
-          ;cards (prep-cards :almost-win)
+          ;cards (prep-cards :shuffled)
+          cards (prep-cards :almost-win)
           ]
     (-> db
       (assoc-in [:solitaire-panel :cards] cards) 

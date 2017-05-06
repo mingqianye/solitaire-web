@@ -8,19 +8,21 @@
   (let [balance (subscribe [:balance])]
     (fn []
       [:div
-       {:style {:color "#545454"}}
-        [:i {:class "zmdi zmdi-balance zmdi-hc-lg"}]
-        [:span {:style {:font-size "15px"
-                        :font-weight "bold"}}
-         "  Personal Checking"]
-        [:br]
+       {:style {:color "#545454" :font-size "1vw"}}
+        [:div
+         {:style {:font-size "1.2vw" :font-weight "bold" :margin-bottom "0.5vw"}}
+          [:i {:class "zmdi zmdi-balance zmdi-hc-lg"}]
+          [:span "  Personal Checking"]]
+       
         [h-box
          :children [
                     [box :size "none" :child [:span {:style {:font-weight "Bold" }}"Balance"]]
                     [box :size "1" :child ""]
                     [box :size "none" :child (str "$ " @balance)]
                     ]]
-       [:hr {:style {:margin-top "5px" :margin-bottom "5px" :color "grey" :border-top "1px solid grey"}}]
+
+        [:hr {:style {:margin-top "0.3vw" :margin-bottom "0.3vw" :color "grey" :border-top "1px solid grey"}}]
+
         [h-box
          :children [
                     [box :size "none" :child "1) VEGAS SOLI. BUY-IN..."]
