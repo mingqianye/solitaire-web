@@ -16,16 +16,16 @@
         [:br]
         [h-box
          :children [
-                    [box :size "none" :child "Balance"]
+                    [box :size "none" :child [:span {:style {:font-weight "Bold" }}"Balance"]]
                     [box :size "1" :child ""]
                     [box :size "none" :child (str "$ " @balance)]
                     ]]
-        [:br]
+       [:hr {:style {:margin-top "5px" :margin-bottom "5px" :color "grey" :border-top "1px solid grey"}}]
         [h-box
          :children [
-                    [box :size "none" :child "VEGAS SOLI. BUY-IN..."]
+                    [box :size "none" :child "1) VEGAS SOLI. BUY-IN..."]
                     [box :size "1" :child ""]
-                    [box :size "none" :child (str "-$52")]
+                    [box :size "none" :child (str "-$ 52")]
                     ]]
        ]
       )))
