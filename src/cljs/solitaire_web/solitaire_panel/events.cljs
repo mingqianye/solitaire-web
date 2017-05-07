@@ -1,7 +1,7 @@
 (ns solitaire-web.solitaire-panel.events
   (:require
     [re-frame.core :refer [reg-event-db]]
-    [solitaire-core.public-api :refer [new-game won?]]
+    [solitaire-core.public-api :refer [new-game]]
     [solitaire-web.solitaire-panel.coordinate-helper :refer [reset-coordinates]]
     [solitaire-web.solitaire-panel.card-click-handler :refer [handle-stock-placeholder-click handle-placeholder-click handle-click]]
     ))
@@ -44,7 +44,6 @@
           ]
     (-> db
       (assoc-in [:solitaire-panel :cards] cards) 
-      (assoc-in [:solitaire-panel :won?] false) 
       ))))
 
 (reg-event-db :deselect-all-cards
@@ -74,7 +73,6 @@
                                                :pile-name placeholder-pile-name})]
       (-> db
         (assoc-in [:solitaire-panel :cards] new-cards)
-        (assoc-in [:solitaire-panel :won?] (won? new-cards))
         ))))
 
 (reg-event-db :clicked-on-card
@@ -83,7 +81,6 @@
           new-cards (handle-click {:cards cards :card-id card-id})]
       (-> db
         (assoc-in [:solitaire-panel :cards] new-cards)
-        (assoc-in [:solitaire-panel :won?] (won? new-cards))
         ))))
 
 (reg-event-db :set-balance
