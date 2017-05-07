@@ -31,10 +31,15 @@
   (fn [transactions _]
     (apply + (map :amount transactions))))
 
-(reg-sub :reversed-transactions
+(reg-sub :transaction-display
   :<- [:transactions]
   (fn [transactions _]
-    (reverse transactions)))
+    (let [negativity #(if (>= % 0) "+" "-")
+          pure-amount #(max % (* -1 %))
+          displayable #(str (negativity %) "$" (pure-amount %))]
+      (->> transactions
+        (map (fn [tr] {:msg (:msg tr) :amount-text (displayable tr)}))
+        (reverse)))))
 
 (reg-sub :dealer
   :<- [:solitaire-panel]

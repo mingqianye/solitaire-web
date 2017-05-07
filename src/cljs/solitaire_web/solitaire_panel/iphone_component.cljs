@@ -4,14 +4,9 @@
     [re-com.core     :refer [h-box box v-box line md-icon-button]]
     ))
 
-(defn visualize-transaction-amount [amount]
-  (let [negativity (if (>= amount 0) "+" "-")
-        pure-amount (max amount (* -1 amount))]
-    (str negativity "$" pure-amount)))
-
 (defn iphone-screen []
   (let [balance (subscribe [:balance])
-        transactions (subscribe [:reversed-transactions])]
+        transactions (subscribe [:transaction-display])]
     (fn []
       [:div
        {:style {:color "#545454" :font-size "1vw"}}
@@ -35,7 +30,7 @@
            :children [
                       [box :size "none" :child (:msg t)]
                       [box :size "1" :child ""]
-                      [box :size "none" :child (visualize-transaction-amount (:amount t))]]])
+                      [box :size "none" :child (:amount-text t)]]])
        ]
       )))
 
