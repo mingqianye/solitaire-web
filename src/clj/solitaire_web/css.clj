@@ -43,7 +43,7 @@
 ; temporary work around for 1. adding currency 2. hide last digit
 ; https://github.com/HubSpot/odometer/issues/106
 (def odometer
-  [:#odometer {:font-size "30px"}
+  [:#odometer {:font-size "3vw"}
    ; add dollar sign
    [:.odometer-inside:before
     {:content "'$'"
