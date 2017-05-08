@@ -8,5 +8,5 @@
         card-count (count selected-cards)]
     {:x (or (:x first-selected-card) (get-in c/settings [:paddle-default :x]))
      :y (+ (or (:y first-selected-card) (get-in c/settings [:paddle-default :y])) (-> c/settings :paddle-top-offset :y))
-     :scale-y (+ 1 (* (-> c/settings :card-in-td-offset :y (/ 100)) card-count))
+     :scale-y (+ 1 (* (/ (get-in c/deltas [7 :y]) 100) card-count))
      }))
