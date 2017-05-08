@@ -5,8 +5,8 @@
             ))
 
 (defn stock-placeholder-component []
-  (let [x (get-in c/settings [:stock :x])
-        y (get-in c/settings [:stock :y])
+  (let [x (get-in c/origins [0 :x])
+        y (get-in c/origins [0 :y])
         translate-to (str "translate3d(" x "%," y "%, 0)")
         able-to-refresh? (subscribe [:able-to-refresh-stock?])
         ]
@@ -35,17 +35,23 @@
     ])
   )
 
+(def pile-id-mappings
+  [{:pile-name :foundation-1      :idx 3 }
+   {:pile-name :foundation-2      :idx 4 }
+   {:pile-name :foundation-3      :idx 5 }
+   {:pile-name :foundation-4      :idx 6 }
+   {:pile-name :tableau-1-face-up :idx 7 }
+   {:pile-name :tableau-2-face-up :idx 8 }
+   {:pile-name :tableau-3-face-up :idx 9 }
+   {:pile-name :tableau-4-face-up :idx 10}
+   {:pile-name :tableau-5-face-up :idx 11}
+   {:pile-name :tableau-6-face-up :idx 12}
+   {:pile-name :tableau-7-face-up :idx 13}])
+
 (defn placeholder-components []
-  (let [pile-names [:foundation-1 :foundation-2 :foundation-3 :foundation-4 :tableau-1-face-up :tableau-2-face-up :tableau-3-face-up :tableau-4-face-up :tableau-5-face-up :tableau-6-face-up :tableau-7-face-up]]
     [:div
-      (for [ph foundation-piles]
-        ^{:key ph} [placeholder-component {:pile-name ph 
-                                           :x (get-in c/settings [ph :x])
-                                           :y (get-in c/settings [ph :y])}])
-      (for [ph tableau-face-up-piles]
-        ^{:key ph} [placeholder-component {:pile-name ph 
-                                           :x (get-in c/settings [(ph counter-pile) :x])
-                                           :y (get-in c/settings [(ph counter-pile) :y])}])
-     ]
-    ))
+      (for [pm pile-id-mappings]
+        ^{:key pm} [placeholder-component {:pile-name (:pile-name pm)
+                                           :x (get-in c/origins [(:idx pm) :x])
+                                           :y (get-in c/origins [(:idx pm) :y])}])])
 
