@@ -77,9 +77,6 @@
 
 (defn main []
   (dispatch [:start-new-game])
-  (dispatch [:set-dialog :welcome])
-  (dispatch [:set-avatar :small-eyes])
-  (dispatch [:set-dealer-dialog-visible true])
   (dispatch [:add-transaction 100 "ACCOUNT DEPOSIT..."])
   [:div {:id "board-container"} 
     [board]

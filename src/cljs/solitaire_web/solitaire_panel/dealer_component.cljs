@@ -99,6 +99,9 @@
      )))) 
 
 (defn dealer-component []
+  (dispatch [:set-dialog :welcome])
+  (dispatch [:set-avatar :small-eyes])
+  (dispatch [:set-dealer-dialog-visible true])
   [:div 
    {:id "dealer"}
    [dealer-main]])
