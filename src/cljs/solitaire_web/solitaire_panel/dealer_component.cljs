@@ -83,17 +83,17 @@
            :position :below-center
            :anchor   [:div
                        {:id "dealer-avatar"
-                        :on-click #(do 
-                                     (dispatch [:set-avatar :hide-hands])
-                                     (dispatch [:set-dealer-dialog-visible true]))}
+                        :on-click #(if @dialog-visible?
+                                      (do (dispatch [:set-avatar :smile])
+                                          (dispatch [:set-dealer-dialog-visible false]))
+                                      (do (dispatch [:set-avatar :hide-hands])
+                                          (dispatch [:set-dealer-dialog-visible true])))
+                                      }
                        [:img {:src avatar-img}] ]
            :popover  [popover-content-wrapper
                        :close-button? false
                        :backdrop-opacity 0.6
-                       ;:title    "Bob"
-                       :on-cancel #(do 
-                                     (dispatch [:set-avatar :smile])
-                                     (dispatch [:set-dealer-dialog-visible false]))
+                       :on-cancel #(println "do nothing")
                        :body     [:div {:style {:width "30vw" :height "30vH"}}
                                    content]]]
      )))) 

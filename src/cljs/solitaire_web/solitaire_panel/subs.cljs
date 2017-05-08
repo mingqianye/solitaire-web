@@ -32,9 +32,12 @@
   (fn [transactions _]
     (let [negativity #(if (>= % 0) "+" "-")
           pure-amount #(max % (* -1 %))
-          displayable #(str (negativity %) "$" (pure-amount %))]
+          displayable (fn [amount]
+                         (str (negativity amount) "$" (pure-amount amount)))]
       (->> transactions
-        (map (fn [tr] {:msg (:msg tr) :amount-text (displayable tr)}))
+        (map-indexed (fn [idx tr] {:id          idx
+                                   :msg         (:msg tr)
+                                   :amount-text (displayable (:amount tr))}))
         (reverse)))))
 
 (reg-sub :dealer
