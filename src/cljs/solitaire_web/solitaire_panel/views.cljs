@@ -78,6 +78,8 @@
 (defn main []
   (dispatch [:start-new-game])
   (dispatch [:add-transaction 100 "ACCOUNT DEPOSIT..."])
+  (dispatch [:set-scene :scene-1])
+  (dispatch [:set-dealer-dialog-visible true])
   [:div {:id "board-container"} 
     [board]
    ])

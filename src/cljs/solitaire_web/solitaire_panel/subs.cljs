@@ -47,25 +47,13 @@
 
 (reg-sub :dealer-dialog-visible?
   :<- [:dealer]
-  :<- [:won?]
-  (fn [[dealer won?] _]
-    (or won? (:show-dialog? dealer))))
+  (fn [dealer _]
+    (:show-dialog? dealer)))
 
-(reg-sub :dealer-avatar
+(reg-sub :dealer-scene
   :<- [:dealer]
-  :<- [:won?]
-  (fn [[dealer won?] _]
-    (if won?
-      :won
-      (:avatar dealer))))
-
-(reg-sub :dealer-dialog
-  :<- [:dealer]
-  :<- [:won?]
-  (fn [[dealer won?] _]
-    (if won?
-      :won-game
-      (:dialog dealer))))
+  (fn [dealer _]
+    (:scene dealer)))
 
 (reg-sub :cards
   :<- [:solitaire-panel]
@@ -75,7 +63,8 @@
 (reg-sub :won?
   :<- [:cards]
   (fn [cards _]
-    (won? cards)))
+    ; need the nil check because there were intialization issues
+    (and (not (nil? cards)) (won? cards))))
 
 (reg-sub :in-animation?
   :<- [:cards]

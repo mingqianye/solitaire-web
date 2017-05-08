@@ -14,9 +14,7 @@
     [:p "My name is Bob."]
     [:p "Shall we start the game?"]
     [:button 
-     {:on-click #(do (dispatch [:set-dialog :intro])
-                     (dispatch [:set-avatar :intro])
-                   )}
+     {:on-click #(dispatch [:set-scene :scene-2])}
      "Sure!"] ])
 
 (def intro-dialog
@@ -25,21 +23,17 @@
     [:p "Shall we start?"]
     [:button 
      {:on-click #(do (dispatch [:deal-cards])
-                     (dispatch [:set-avatar :smile])
-                     (dispatch [:set-dialog :pause-game])
+                     (dispatch [:set-scene :in-game])
                      (dispatch [:set-dealer-dialog-visible false])
                    )}
       "Deal!"]
    ])
 
 (def in-game-dialog
-  [:div
-    [:p "He"]
-              ])
+  [:div [:p "Should never be showed"] ])
 
 (def pause-game-dialog
-  [:div
-    [:p "What can I do for you?"]])
+  [:div [:p "Pause game dialog"]])
 
 (def won-game-dialog
   [:div
@@ -47,36 +41,34 @@
     [:button 
      {:on-click #(do (dispatch [:add-transaction @(subscribe [:money]) "VEGAS SOLI..."])
                      (dispatch [:deal-cards])
-                     (dispatch [:set-avatar :smile])
-                     (dispatch [:set-dialog :pause-game])
+                     (dispatch [:set-scene :in-game])
                      (dispatch [:set-dealer-dialog-visible false])
                    )}
      "Deal again"]])
 
-(def dialogs
-  {:welcome welcome-dialog
-   :intro   intro-dialog
-   :in-game in-game-dialog
-   :pause-game pause-game-dialog
-   :won-game won-game-dialog
-   })
-
-(def avatars
-  {:small-eyes "images/dealer/avatar-small-eyes.png"
-   :intro      "images/dealer/avatar-intro.png"
-   :smile      "images/dealer/avatar-smile.png"
-   :hide-hands "images/dealer/avatar-hide-hands.png"
-   :won        "images/dealer/avatar-cards.png"
-   })
+(def scenes
+  {:pause   {:dialog pause-game-dialog
+             :avatar "images/dealer/avatar-hide-hands.png"}
+   :in-game {:dialog in-game-dialog
+             :avatar "images/dealer/avatar-smile.png"}
+   :scene-1 {:dialog welcome-dialog
+             :avatar "images/dealer/avatar-small-eyes.png"}
+   :scene-2 {:dialog intro-dialog
+             :avatar "images/dealer/avatar-intro.png"}
+   :scene-4 {:dialog won-game-dialog
+             :avatar "images/dealer/avatar-cards.png"}})
 
 
 (defn dealer-main []
   (let [dialog-visible? (subscribe [:dealer-dialog-visible?])
-        avatar (subscribe [:dealer-avatar])
-        dialog (subscribe [:dealer-dialog])]
+        scene (subscribe [:dealer-scene])
+        won?  (subscribe [:won?])]
     (fn []
-      (let [avatar-img (get avatars @avatar)
-            content    (get dialogs @dialog)]
+      (let [_ (if @won? (do (dispatch [:set-scene :scene-4])
+                            (dispatch [:set-dealer-dialog-visible true])))
+            avatar-img (get-in scenes [@scene :avatar])
+            content    (get-in scenes [@scene :dialog])
+            ]
       
         [popover-anchor-wrapper
            :showing? dialog-visible?
@@ -84,9 +76,9 @@
            :anchor   [:div
                        {:id "dealer-avatar"
                         :on-click #(if @dialog-visible?
-                                      (do (dispatch [:set-avatar :smile])
+                                      (do (dispatch [:set-scene :scene-0])
                                           (dispatch [:set-dealer-dialog-visible false]))
-                                      (do (dispatch [:set-avatar :hide-hands])
+                                      (do (dispatch [:set-scene :hide-hands])
                                           (dispatch [:set-dealer-dialog-visible true])))
                                       }
                        [:img {:src avatar-img}] ]
@@ -99,9 +91,6 @@
      )))) 
 
 (defn dealer-component []
-  (dispatch [:set-dialog :welcome])
-  (dispatch [:set-avatar :small-eyes])
-  (dispatch [:set-dealer-dialog-visible true])
   [:div 
    {:id "dealer"}
    [dealer-main]])

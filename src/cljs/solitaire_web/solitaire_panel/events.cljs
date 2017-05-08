@@ -20,7 +20,6 @@
       (-> db
         (assoc-in [:solitaire-panel :transactions] [])
         (assoc-in [:solitaire-panel :cards] cards)
-        (assoc-in [:solitaire-panel :won?] false)
         (assoc-in [:solitaire-panel :stock-placeholder-num-clicks] 0)
           ))))
 
@@ -28,13 +27,9 @@
   (fn [db [_ show?]]
     (assoc-in db [:solitaire-panel :dealer :show-dialog?] show?)))
 
-(reg-event-db :set-avatar
-  (fn [db [_ avatar]]
-    (assoc-in db [:solitaire-panel :dealer :avatar] avatar)))
-
-(reg-event-db :set-dialog
-  (fn [db [_ dialog]]
-    (assoc-in db [:solitaire-panel :dealer :dialog] dialog)))
+(reg-event-db :set-scene
+  (fn [db [_ scene]]
+    (assoc-in db [:solitaire-panel :dealer :scene] scene)))
 
 (reg-event-db :deal-cards
   (fn [db [_]]
