@@ -1,5 +1,6 @@
 (defproject solitaire-web "0.1.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.8.0"]
+                 [org.clojure/core.match "0.3.0-alpha4"]
                  [org.clojure/clojurescript "1.9.473" :exclus [org.apache.ant/ant]]
                  [reagent "0.6.0" :exclusions [cljsjs/react]]
                  [re-frame "0.9.2"]

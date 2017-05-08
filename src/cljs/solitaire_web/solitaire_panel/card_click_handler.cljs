@@ -3,6 +3,7 @@
     [solitaire-core.public-api :refer [can-be-selected? can-move? move refresh-waste]]
     [solitaire-web.solitaire-panel.coordinate-helper :refer [reset-coordinates]]
     [solitaire-web.solitaire-panel.different-piles :refer [tableau-face-up-piles foundation-piles]]
+    [cljs.core.match :refer-macros [match]]
     ))
 
 (defn first-selected-card [cards]
@@ -76,13 +77,8 @@
         move (fn [cards] (move {:m cards :i (:index-in-pile selected-card) 
                                 :from (:pile-name selected-card) :to (:pile-name clicked-card)}))
         ]
-    (if (no-card-selected?)
-      (if (clicked-card-can-be-selected?)
-        (select-cards cards card-id)
-        (deselect-all cards))
-      (if (can-perform-move?)
-        (-> cards
-          (move)
-          (reset-coordinates))
-        (-> cards
-          (deselect-all))))))
+    (match [(no-card-selected?) (clicked-card-can-be-selected?) (can-perform-move?)]
+      [true  true  _   ] (select-cards cards card-id)
+      [true  false _   ] (deselect-all cards)
+      [false _    true ] (-> cards (move) (reset-coordinates))
+      [false _    false] (-> cards (deselect-all)))))
