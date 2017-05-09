@@ -9,10 +9,10 @@
   )
 
 (defn image-front-path [{:keys [suit rank]}]
-  (str "images/cards/" rank "_of_" (name suit) "s.png"))
+  (str "images/cards/" rank "_of_" (name suit) "s.svg"))
 
 (def image-back-path
-  "images/cards/back.png")
+  "images/cards/back.svg")
 
 (defn front-y-rotation [pile-name]
   (if (contains? face-down-piles pile-name) 180 0))
