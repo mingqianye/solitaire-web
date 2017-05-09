@@ -53,7 +53,7 @@
     [iphone-screen]]
 
     
-   [:img {:src "images/iphone.png" 
+   [:img {:src "images/iphone.svg" 
           :style {:filter "drop-shadow(9px 9px 9px rgba(0,0,0,0.3))"}
           :width "100%"}]
    ])
