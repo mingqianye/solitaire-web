@@ -9,6 +9,7 @@
    :paddle-default {:x 200 :y -500}
    })
 
+; see the diagram of the pile ids in pile-id.png
 (def origins
   [{:x 0         :y 0   :z-index 0}
    {:x 220       :y 0   :z-index 0}
