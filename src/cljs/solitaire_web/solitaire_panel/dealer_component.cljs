@@ -75,6 +75,8 @@
            :position :below-center
            :anchor   [:div
                        {:class "dealer-avatar"
+                        :on-mouse-over #(do (dispatch [:set-scene :pause])
+                                          (dispatch [:set-dealer-dialog-visible true]))
                         :on-click #(if @dialog-visible?
                                       (do (dispatch [:set-scene :in-game])
                                           (dispatch [:set-dealer-dialog-visible false]))

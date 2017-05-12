@@ -46,7 +46,7 @@
         [:div
           {:on-click #(dispatch [:clicked-on-card card-id])
            :on-double-click #(println "doubled!")
-           :class "card"
+           :class "hvr-ripple-out card"
            :style {
                    :transform (str translate-to " " rotate-to)
                    :z-index @z-index
