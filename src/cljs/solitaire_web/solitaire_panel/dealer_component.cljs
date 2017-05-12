@@ -74,7 +74,7 @@
            :showing? dialog-visible?
            :position :below-center
            :anchor   [:div
-                       {:id "dealer-avatar"
+                       {:class "dealer-avatar"
                         :on-click #(if @dialog-visible?
                                       (do (dispatch [:set-scene :in-game])
                                           (dispatch [:set-dealer-dialog-visible false]))
@@ -92,6 +92,6 @@
 
 (defn dealer-component []
   [:div 
-   {:id "dealer"}
+   {:class "dealer"}
    [dealer-main]])
 

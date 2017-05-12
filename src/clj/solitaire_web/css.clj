@@ -84,12 +84,15 @@
 
 
 (def dealer
-  [:#dealer
+  [:.dealer
    {:width "12vw" }
-   [:#dealer-avatar
+   [:.dealer-avatar
     {:z-index 9999}
     [:img
-      {:width "100%"}]]
+      {:width "100%"}]
+   ]
+   [:.rc-point-wrapper
+     {:z-index 9999}]
    ])
 
 (def board
