@@ -16,7 +16,7 @@
                        (dispatch [:clicked-on-stock-placeholder])
                        (println "Cannot refresh stock anymore"))
          :on-double-click #(println "doubleddddd!")
-         :class "placeholder"
+         :class "hvr-ripple-out placeholder"
          :style {:transform translate-to}}
         [:img {:src (if @able-to-refresh?
                       "images/placeholder_refresh.png"
@@ -29,7 +29,7 @@
     [:div
       {:on-click #(dispatch [:clicked-on-placeholder pile-name])
        :on-double-click #(println "doubled!")
-       :class "placeholder"
+       :class "hvr-ripple-out placeholder"
        :style {:transform translate-to}}
       [:img {:src "images/placeholder_empty.png"}]
     ])

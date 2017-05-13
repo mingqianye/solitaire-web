@@ -1,13 +1,17 @@
 /* Ripple Out */
 @keyframes hvr-ripple-out {
   0% {
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
     opacity: 1;
   }
   100% {
-    top: -12px;
-    right: -12px;
-    bottom: -12px;
-    left: -12px;
+    top: -20px;
+    right: -20px;
+    bottom: -20px;
+    left: -20px;
     opacity: 0;
   }
 }
@@ -23,14 +27,9 @@
   content: '';
   position: absolute;
   border: #e1e1e1 solid 6px;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   opacity: 0;
   animation-duration: 0.5s;
 }
 .hvr-ripple-out:hover:before, .hvr-ripple-out:focus:before, .hvr-ripple-out:active:before {
-  -webkit-animation-name: hvr-ripple-out;
   animation-name: hvr-ripple-out;
 }
