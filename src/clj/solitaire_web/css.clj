@@ -5,6 +5,10 @@
     )
   )
 
+(def body
+  [:body {:user-select "none"}]
+  )
+
 (def card-width
   "6vw")
 
@@ -117,4 +121,4 @@
 
 (defstyles screen
   [:body {:color "black"}]
-  board-container board card placeholder odometer paddle dealer)
+  body board-container board card placeholder odometer paddle dealer)
