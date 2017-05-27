@@ -42,7 +42,7 @@
     [:img.front:hover
       {:box-shadow "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"}]
     [:img.front.selected
-      {:box-shadow "0 0 60px rgba(81, 203, 238, 1)"}]])
+      {:box-shadow "0 0 20px rgba(228,238,81,1)"}]])
 
 ; temporary work around for 1. adding currency 2. hide last digit
 ; https://github.com/HubSpot/odometer/issues/106
