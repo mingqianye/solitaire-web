@@ -14,6 +14,7 @@
             [reanimated.core :as anim]
             [re-frame.core :refer [dispatch dispatch-sync subscribe]]
             [re-com.core     :refer [h-box box v-box line md-icon-button]]
+            [solitaire-web.solitaire-panel.dashboard_panel.views :as dashboard]
             ))
 
 (defn deal-cards-button []
@@ -71,6 +72,7 @@
    [new-game-button]
    [latte]
    [iphone-component]
+   [dashboard/main]
    ]
   )
 
