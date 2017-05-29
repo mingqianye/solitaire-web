@@ -16,10 +16,13 @@
 
 (reg-event-db :add-candies-btn-clicked
   (fn [db _]
+    (let [noww (now)]
     (-> db
-    (assoc-in [:dashboard-panel :add-candies-btn-cooldown-at] (+ 5000 (now)))
+    (assoc-in [:dashboard-panel :now] noww)
+    (assoc-in [:dashboard-panel :add-candies-btn-last-clicked] noww)
+    (assoc-in [:dashboard-panel :add-candies-btn-cooldown-at] (+ 5000 noww))
     (update-in [:dashboard-panel :total-candies] inc)
-      )))
+      ))))
 
 (reg-event-db :refresh-time
   (fn [db _]

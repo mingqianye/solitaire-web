@@ -1,11 +1,12 @@
 (ns solitaire-web.solitaire-panel.dashboard_panel.views
   (:require [solitaire-web.solitaire-panel.dashboard-panel.events]
             [solitaire-web.solitaire-panel.dashboard-panel.subs]
+            [re-com.core :refer [progress-bar]]
     [re-frame.core :refer [dispatch dispatch-sync subscribe]]))
 
 ;refresh the clock every one second
 (defonce do-timer 
-  (js/setInterval #(dispatch [:refresh-time]) 1000))
+  (js/setInterval #(dispatch [:refresh-time]) 50))
 
 (defn last-updated-at []
   (let [last-updated (subscribe [:now])]
@@ -25,14 +26,21 @@
       )))
 
 (defn create-candy []
-  (let [disabled? (subscribe [:add-candies-btn-in-cooldown?])]
+  (let [disabled? (subscribe [:add-candies-btn-in-cooldown?])
+        percent (subscribe [:add-candies-btn-cooldown-progress])]
     (fn []
-      (println @disabled?)
-      [:button 
-       {:on-click #(dispatch [:add-candies-btn-clicked])
-        :disabled @disabled?
-        }
-       "create candy"])))
+      [:div
+        [:button 
+         {:on-click #(dispatch [:add-candies-btn-clicked])
+          :disabled @disabled?
+          }
+         "create candy"]
+        [progress-bar
+         :model percent
+         ]
+       
+       ]
+       )))
 
 (defn sell-candy []
   (let []
