@@ -16,7 +16,14 @@
   (fn [panel _]
     (:total-candies panel)))
 
-(reg-sub :last-updated-at
+(reg-sub :now
   :<- [:dashboard-panel]
   (fn [panel _]
-    (:last-updated-at panel)))
+    (:now panel)))
+
+(reg-sub :add-candies-btn-in-cooldown?
+  :<- [:dashboard-panel]
+  (fn [panel _]
+    (< (:now panel)
+       (:add-candies-btn-cooldown-at panel)
+       )))

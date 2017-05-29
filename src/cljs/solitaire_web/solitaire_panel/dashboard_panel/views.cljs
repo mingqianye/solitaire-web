@@ -3,12 +3,12 @@
             [solitaire-web.solitaire-panel.dashboard-panel.subs]
     [re-frame.core :refer [dispatch dispatch-sync subscribe]]))
 
-;refresh the clock every 41 microsecond (1s/24)
+;refresh the clock every one second
 (defonce do-timer 
-  (js/setInterval #(dispatch [:refresh-time]) 41))
+  (js/setInterval #(dispatch [:refresh-time]) 1000))
 
 (defn last-updated-at []
-  (let [last-updated (subscribe [:last-updated-at])]
+  (let [last-updated (subscribe [:now])]
     (fn []
       [:p "last updated at: " @last-updated])))
 
@@ -25,10 +25,13 @@
       )))
 
 (defn create-candy []
-  (let []
+  (let [disabled? (subscribe [:add-candies-btn-in-cooldown?])]
     (fn []
+      (println @disabled?)
       [:button 
-       {:on-click #(dispatch [:add-candies 1])}
+       {:on-click #(dispatch [:add-candies-btn-clicked])
+        :disabled @disabled?
+        }
        "create candy"])))
 
 (defn sell-candy []
