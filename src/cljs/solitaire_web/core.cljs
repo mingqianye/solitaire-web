@@ -5,12 +5,17 @@
               [solitaire-web.subs]
               [solitaire-web.solitaire-panel.views :as views]
               [re-frame.core :refer [clear-subscription-cache! dispatch dispatch-sync subscribe]]
-              [solitaire-web.config :as config]))
+              [solitaire-web.config :as config]
+              [re-frisk.core :refer [enable-re-frisk!]]
+              ))
 
 
 (defn dev-setup []
   (when config/debug?
-    (println "dev mode")))
+    (do
+    (println "dev mode")
+    (enable-re-frisk!)
+      )))
 
 (defn debug-component []
   (let [whole-db (subscribe [:whole-db])]

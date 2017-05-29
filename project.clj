@@ -37,7 +37,8 @@
 
   :profiles
   {:dev
-   {:dependencies [[binaryage/devtools "0.8.2"]]
+   {:dependencies [[binaryage/devtools "0.8.2"]
+                   [re-frisk "0.4.5"] ]
 
     :plugins      [[lein-figwheel "0.5.9"]]
     }}
