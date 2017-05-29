@@ -71,7 +71,7 @@
    [deal-cards-button]
    [new-game-button]
    [latte]
-   [iphone-component]
+   ;[iphone-component]
    [dashboard/main]
    ]
   )
@@ -80,8 +80,8 @@
 (defn main []
   (dispatch [:start-new-game])
   (dispatch [:add-transaction 100 "ACCOUNT DEPOSIT..."])
-  (dispatch [:set-scene :scene-1])
-  (dispatch [:set-dealer-dialog-visible true])
+  (dispatch [:set-scene :in-game])
+  (dispatch [:set-dealer-dialog-visible false])
   [:div {:id "board-container"} 
     [board]
    ])
