@@ -20,6 +20,7 @@
         [:p "DB:"]
         [:pre (with-out-str (pprint @whole-db))]])))
 
+
 (defn root-component []
   (let [active  (subscribe [:active-panel])]
   (fn []
@@ -27,7 +28,7 @@
       (condp = @active
         :solitaire-panel [views/main]
         [:p "No active panel"])
-      ;[debug-component]
+        ;[debug-component]
     ])))
 
 (defn mount-root []

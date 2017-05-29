@@ -2,14 +2,9 @@
   (:require [re-frame.core :refer [reg-sub subscribe]]
             ))
 
-;(reg-sub :solitaire-panel
-;  (fn [db _]
-;    (:solitaire-panel db)))
-
 (reg-sub :dashboard-panel
-  :<- [:solitaire-panel]
-  (fn [panel _]
-    (:dashboard-panel panel)))
+  (fn [db _]
+    (:dashboard-panel db)))
 
 (reg-sub :total-money
   :<- [:dashboard-panel]
@@ -20,3 +15,8 @@
   :<- [:dashboard-panel]
   (fn [panel _]
     (:total-candies panel)))
+
+(reg-sub :last-updated-at
+  :<- [:dashboard-panel]
+  (fn [panel _]
+    (:last-updated-at panel)))
