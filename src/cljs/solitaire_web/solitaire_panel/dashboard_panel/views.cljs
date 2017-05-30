@@ -6,7 +6,7 @@
 
 ;refresh the clock every one second
 (defonce do-timer 
-  (js/setInterval #(dispatch [:refresh-time]) 500))
+  (js/setInterval #(dispatch [:refresh-time]) 50))
 
 (defn last-updated-at []
   (let [last-updated (subscribe [:now])]
@@ -38,14 +38,24 @@
         [progress-bar
          :model percent
          ]
-       
        ]
        )))
 
 (defn sell-candy []
-  (let []
+  (let [disabled? (subscribe [:sell-candies-btn-in-cooldown?])
+        percent (subscribe [:sell-candies-btn-cooldown-progress])]
     (fn []
-      [:button "sell candy"])))
+      [:div
+        [:button 
+         {:on-click #(dispatch [:sell-candies-btn-clicked])
+          :disabled @disabled?
+          }
+         "sell candy"]
+        [progress-bar
+         :model percent
+         ]
+       ]
+       )))
 
 
 
