@@ -6,7 +6,7 @@
 
 ;refresh the clock every one second
 (defonce do-timer 
-  (js/setInterval #(dispatch [:refresh-time]) 50))
+  (js/setInterval #(dispatch [:refresh-time]) 500))
 
 (defn last-updated-at []
   (let [last-updated (subscribe [:now])]
