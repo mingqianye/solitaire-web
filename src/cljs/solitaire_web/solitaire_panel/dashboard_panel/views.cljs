@@ -1,7 +1,7 @@
 (ns solitaire-web.solitaire-panel.dashboard_panel.views
   (:require [solitaire-web.solitaire-panel.dashboard-panel.events]
             [solitaire-web.solitaire-panel.dashboard-panel.subs]
-            [re-com.core :refer [progress-bar]]
+            [re-com.core :refer [progress-bar h-box v-box box]]
     [re-frame.core :refer [dispatch dispatch-sync subscribe]]))
 
 ;refresh the clock every one second
@@ -25,36 +25,62 @@
       [:p (str "total number of candies: " @total)]
       )))
 
+(defn candy-capacity []
+  (let [percent (subscribe [:candy-capacity-progress])]
+    (fn []
+      [:div
+        [:p "candy capacity" ]
+        [progress-bar
+         :model percent
+         :striped? true]]
+      )))
+
 (defn create-candy []
   (let [disabled? (subscribe [:add-candies-btn-in-cooldown?])
         percent (subscribe [:add-candies-btn-cooldown-progress])]
     (fn []
-      [:div
-        [:button 
-         {:on-click #(dispatch [:add-candies-btn-clicked])
-          :disabled @disabled?
-          }
-         "create candy"]
-        [progress-bar
-         :model percent
-         ]
-       ]
+      [h-box
+       :width "20vw"
+       :align :center
+       :children [[box 
+                   :size "1"
+                   :child
+                     [:button 
+                      {:on-click #(dispatch [:add-candies-btn-clicked])
+                       :disabled @disabled?
+                       }
+                      "create candy"]]
+                  [box
+                   :size "1"
+                   :child
+                   [:div {:style {:width "100%"}}
+                     [progress-bar
+                      :model percent
+                      :striped? true]]]]]
        )))
 
 (defn sell-candy []
   (let [disabled? (subscribe [:sell-candies-btn-in-cooldown?])
         percent (subscribe [:sell-candies-btn-cooldown-progress])]
     (fn []
-      [:div
-        [:button 
-         {:on-click #(dispatch [:sell-candies-btn-clicked])
-          :disabled @disabled?
-          }
-         "sell candy"]
-        [progress-bar
-         :model percent
-         ]
-       ]
+      [h-box
+       :width "20vw"
+       :align :center
+       :children [[box 
+                   :size "1"
+                   :child
+                     [:button 
+                      {:on-click #(dispatch [:sell-candies-btn-clicked])
+                       :disabled @disabled?
+                       }
+                      "sell candy"]]
+                  [box
+                   :size "1"
+                   :child
+                   [:div {:style {:width "100%"}}
+                     [progress-bar
+                      :model percent
+                      :striped? true]]]]]
        )))
 
 
@@ -66,7 +92,7 @@
    [total-candies]
    [last-updated-at]
    [create-candy]
-   [:br]
+   [candy-capacity]
    [sell-candy]
    ])
 

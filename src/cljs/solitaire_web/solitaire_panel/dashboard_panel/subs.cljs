@@ -21,6 +21,17 @@
   (fn [panel _]
     (:now panel)))
 
+(reg-sub :candy-capacity
+  :<- [:dashboard-panel]
+  (fn [panel _]
+    (:candy-capacity panel)))
+
+(reg-sub :candy-capacity-progress
+  :<- [:candy-capacity]
+  :<- [:total-candies]
+  (fn [[capacity total] _]
+    (* 100 (/ total capacity))))
+
 
 (reg-sub :add-candies-btn-cooldown-progress
   :<- [:dashboard-panel]

@@ -11,6 +11,7 @@
                  [compojure "1.5.0"]
                  [yogthos/config "0.8"]
                  [ring "1.4.0"]
+                 [re-frisk "0.4.5"] 
                  [reanimated "0.5.0"]
                  [solitaire-core "0.1.31"]]
 
@@ -37,8 +38,7 @@
 
   :profiles
   {:dev
-   {:dependencies [[binaryage/devtools "0.8.2"]
-                   [re-frisk "0.4.5"] ]
+   {:dependencies [[binaryage/devtools "0.8.2"]]
 
     :plugins      [[lein-figwheel "0.5.9"]]
     }}
