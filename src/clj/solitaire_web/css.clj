@@ -99,6 +99,11 @@
      {:z-index 9999}]
    ])
 
+(def c-progress-bar
+  [:.c-progress-bar
+   {:background-color "red" }
+   ])
+
 (def board
   [:#board
     {
@@ -121,4 +126,4 @@
 
 (defstyles screen
   [:body {:color "black"}]
-  body board-container board card placeholder odometer paddle dealer)
+  body board-container board card placeholder odometer paddle dealer c-progress-bar)

@@ -26,10 +26,15 @@
       )))
 
 (defn candy-capacity []
+  (let [capacity (subscribe [:candy-capacity])]
+    (fn []
+        [:p (str "candy capacity: " @capacity)]
+      )))
+
+(defn candy-container-progress []
   (let [percent (subscribe [:candy-capacity-progress])]
     (fn []
       [:div
-        [:p "candy capacity" ]
         [progress-bar
          :model percent
          :striped? true]]
@@ -53,7 +58,7 @@
                   [box
                    :size "1"
                    :child
-                   [:div {:style {:width "100%"}}
+                   [:div {:style {:width "100%"} }
                      [progress-bar
                       :model percent
                       :striped? true]]]]]
@@ -88,11 +93,15 @@
 (defn dashboard []
   (dispatch [:start-dashboard])
   [:div 
-   [total-money]
-   [total-candies]
    [last-updated-at]
+   [:hr]
+   [total-candies]
    [create-candy]
+   [:hr]
    [candy-capacity]
+   [candy-container-progress]
+   [:hr]
+   [total-money]
    [sell-candy]
    ])
 
