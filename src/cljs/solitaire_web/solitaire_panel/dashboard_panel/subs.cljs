@@ -4,7 +4,9 @@
 
 (defn calc-progress [{:keys [now last-clicked-at will-be-done-at]}]
   (let [raw-num (/ (- now last-clicked-at) (- will-be-done-at last-clicked-at))]
-    (* 100 (min raw-num 1))))
+    (if (<= 0 raw-num 1)
+      (* 100 raw-num)
+      0)))
 
 
 (reg-sub :dashboard-panel
@@ -48,7 +50,7 @@
 (reg-sub :add-candies-btn-in-cooldown?
   :<- [:add-candies-btn-cooldown-progress]
   (fn [percent _]
-    (< percent 100)))
+    (< 0 percent 100)))
 
 (reg-sub :sell-candies-btn-cooldown-progress
   :<- [:dashboard-panel]
@@ -60,4 +62,4 @@
 (reg-sub :sell-candies-btn-in-cooldown?
   :<- [:sell-candies-btn-cooldown-progress]
   (fn [percent _]
-    (< percent 100)))
+    (< 0 percent 100)))
