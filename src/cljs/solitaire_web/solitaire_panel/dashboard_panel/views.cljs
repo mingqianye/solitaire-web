@@ -25,14 +25,15 @@
       [:p (str "total number of candies: " @total)]
       )))
 
-(defn candy-capacity []
-  (let [capacity (subscribe [:candy-capacity])]
+(defn container-capacity []
+  (let [total-candies (subscribe [:total-candies])
+        capacity (subscribe [:container-capacity])]
     (fn []
-        [:p (str "candy capacity: " @capacity)]
+        [:p (str "container capacity: " @total-candies "/" @capacity)]
       )))
 
 (defn candy-container-progress []
-  (let [percent (subscribe [:candy-capacity-progress])]
+  (let [percent (subscribe [:container-capacity-progress])]
     (fn []
       [:div
         [progress-bar
@@ -98,7 +99,7 @@
    [total-candies]
    [create-candy]
    [:hr]
-   [candy-capacity]
+   [container-capacity]
    [candy-container-progress]
    [:hr]
    [total-money]

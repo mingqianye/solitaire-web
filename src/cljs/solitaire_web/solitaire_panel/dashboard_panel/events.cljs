@@ -11,7 +11,7 @@
     (-> db
       (assoc-in [:dashboard-panel :total-candies] 53)
       (assoc-in [:dashboard-panel :total-money] 20)
-      (assoc-in [:dashboard-panel :candy-capacity] 60)
+      (assoc-in [:dashboard-panel :container-capacity] 60)
       (assoc-in [:dashboard-panel :todo-list] [])
       (assoc-in [:dashboard-panel :add-candies-btn-reactivate-at] (now db))
       )))

@@ -5,7 +5,7 @@
 (defn calc-progress [{:keys [now last-clicked-at will-be-done-at]}]
   (let [raw-num (/ (- now last-clicked-at) (- will-be-done-at last-clicked-at))]
     (if (<= 0 raw-num 1)
-      (* 100 raw-num)
+      (int (* 100 raw-num ))
       0)))
 
 
@@ -28,16 +28,16 @@
   (fn [panel _]
     (:now panel)))
 
-(reg-sub :candy-capacity
+(reg-sub :container-capacity
   :<- [:dashboard-panel]
   (fn [panel _]
-    (:candy-capacity panel)))
+    (:container-capacity panel)))
 
-(reg-sub :candy-capacity-progress
-  :<- [:candy-capacity]
+(reg-sub :container-capacity-progress
+  :<- [:container-capacity]
   :<- [:total-candies]
   (fn [[capacity total] _]
-    (* 100 (/ total capacity))))
+    (int (* 100 (/ total capacity)))))
 
 
 (reg-sub :add-candies-btn-cooldown-progress
