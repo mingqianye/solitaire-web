@@ -18,9 +18,12 @@
             ))
 
 (defn deal-cards-button []
-  [:button {:on-click #(dispatch [:deal-cards])} 
-   "deal!"]
-  )
+  (let [enabled? (subscribe [:deal-cards-button-endabled?])]
+    (fn []
+      [:button {:on-click #(dispatch [:deal-cards])
+                :disabled (not @enabled?)} 
+     "deal!"]
+    )))
 
 (defn new-game-button []
   [:button {:on-click #(dispatch [:start-new-game])} 

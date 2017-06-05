@@ -40,6 +40,11 @@
                                    :amount-text (displayable (:amount tr))}))
         (reverse)))))
 
+(reg-sub :deal-cards-button-endabled?
+  :<- [:dashboard-panel]
+  (fn [panel _]
+    (>= (:total-candies panel) (:buy-in-cost panel))))
+
 (reg-sub :dealer
   :<- [:solitaire-panel]
   (fn [panel _]
@@ -88,4 +93,5 @@
   :<- [:cards]
   (fn [cards _]
     (get-paddle cards)))
+
 

@@ -9,6 +9,7 @@
 (reg-event-db :start-dashboard
   (fn [db _]
     (-> db
+      (assoc-in [:dashboard-panel :buy-in-cost] 54)
       (assoc-in [:dashboard-panel :total-candies] 53)
       (assoc-in [:dashboard-panel :total-money] 20)
       (assoc-in [:dashboard-panel :container-capacity] 60)

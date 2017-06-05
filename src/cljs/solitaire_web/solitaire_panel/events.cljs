@@ -33,11 +33,11 @@
 
 (reg-event-db :deal-cards
   (fn [db [_]]
-    (let [
-          cards (prep-cards :shuffled)
-          ;cards (prep-cards :almost-win)
+    (let [cards (prep-cards :shuffled)
+          buy-in-cost (get-in db [:dashboard-panel :buy-in-cost])
           ]
     (-> db
+      (update-in [:dashboard-panel :total-candies] #(- % buy-in-cost))
       (assoc-in [:solitaire-panel :cards] cards) 
       ))))
 
