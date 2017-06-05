@@ -8,7 +8,6 @@
             [solitaire-web.solitaire-panel.paddle-component :refer [paddle-component]]
             [solitaire-web.solitaire-panel.dealer-component :refer [dealer-component]]
             [solitaire-web.solitaire-panel.money-component :refer [money-component]]
-            [solitaire-web.solitaire-panel.iphone-component :refer [iphone-component]]
             [solitaire-web.solitaire-panel.coordinates :refer [board-left-padding]]
             [reagent.core :as reagent]
             [reanimated.core :as anim]
@@ -74,7 +73,6 @@
    [deal-cards-button]
    [new-game-button]
    [latte]
-   ;[iphone-component]
    [dashboard/main]
    ]
   )
@@ -82,7 +80,6 @@
 
 (defn main []
   (dispatch [:start-new-game])
-  (dispatch [:add-transaction 100 "ACCOUNT DEPOSIT..."])
   (dispatch [:set-scene :in-game])
   (dispatch [:set-dealer-dialog-visible false])
   [:div {:id "board-container"} 

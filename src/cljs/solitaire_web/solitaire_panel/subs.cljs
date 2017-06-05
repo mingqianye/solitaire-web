@@ -16,30 +16,6 @@
   (fn [panel _]
     (< (:stock-placeholder-num-clicks panel) 2))) ; can only go through the deck 3 times
 
-
-(reg-sub :transactions
-  :<- [:solitaire-panel]
-  (fn [panel _]
-    (:transactions panel)))
-
-(reg-sub :balance
-  :<- [:transactions]
-  (fn [transactions _]
-    (apply + (map :amount transactions))))
-
-(reg-sub :transaction-display
-  :<- [:transactions]
-  (fn [transactions _]
-    (let [negativity #(if (>= % 0) "+" "-")
-          pure-amount #(max % (* -1 %))
-          displayable (fn [amount]
-                         (str (negativity amount) "$" (pure-amount amount)))]
-      (->> transactions
-        (map-indexed (fn [idx tr] {:id          idx
-                                   :msg         (:msg tr)
-                                   :amount-text (displayable (:amount tr))}))
-        (reverse)))))
-
 (reg-sub :deal-cards-button-endabled?
   :<- [:dashboard-panel]
   (fn [panel _]
