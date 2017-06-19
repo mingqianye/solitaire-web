@@ -20,9 +20,9 @@
 
 (reg-sub :total-candies
   :<- [:dashboard-panel]
-  :<- [:money]
+  :<- [:total-money]
   (fn [[panel money] _]
-    (+ (:total-candies panel) money)))
+    (+ (:total-candies panel) 0)))
 
 (reg-sub :now
   :<- [:dashboard-panel]

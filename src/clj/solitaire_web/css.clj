@@ -47,7 +47,7 @@
 ; temporary work around for 1. adding currency 2. hide last digit
 ; https://github.com/HubSpot/odometer/issues/106
 (def odometer
-  [:#odometer {:font-size "3vw"}
+  [:#odometer {:font-size "2vw"}
    ; add dollar sign
    [:.odometer-inside:before
     {:content "'$'"
@@ -57,11 +57,12 @@
      :font-size "0.85em"
      :margin-right "0.12em"}]
    ; hide first and last digit
-   [:.odometer-inside
-    [(span :.odometer-digit (nth-child :1))
-     (span :.odometer-formatting-mark (nth-child :2))
-     (span :.odometer-digit:last-child) {:display "none"}]
-    ]])
+   ;[:.odometer-inside
+   ; [(span :.odometer-digit (nth-child :1))
+   ;  (span :.odometer-formatting-mark (nth-child :2))
+   ;  (span :.odometer-digit:last-child) {:display "none"}]
+   ; ]
+   ])
 
 (def glass
     {:box-shadow "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"

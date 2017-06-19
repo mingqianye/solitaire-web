@@ -1,8 +1,11 @@
 (ns solitaire-web.solitaire-panel.odometer
   (:require [reagent.core :as reagent]))
 
-(defn pad-1s [value]
+(defn pad-1s-2 [value]
   (+ 1000.001 value))
+
+(defn pad-1s [value]
+  value)
 
 ; Wrapper of odometer javascript library
 ; input parameter documentation can be found here:

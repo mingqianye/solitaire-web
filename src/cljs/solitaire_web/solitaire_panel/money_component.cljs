@@ -9,7 +9,7 @@
       [:div
        [odometer {:id "odometer" 
                   :class "odometer" 
-                  :format "(,ddd).ddd"
+                  :format "(,ddd)"
                   :theme "car"
                   :value @money}]])))
       

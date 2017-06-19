@@ -57,14 +57,6 @@
   (fn [cards [_ card-id]]
     (nth cards card-id)))
 
-(reg-sub :money
-  :<- [:cards]
-  (fn [cards _]
-    (->> cards 
-      (filter #(contains? foundation-piles (:pile-name %)))
-      (count)
-      (* 5.0))))
-
 (reg-sub :paddle
   :<- [:cards]
   (fn [cards _]

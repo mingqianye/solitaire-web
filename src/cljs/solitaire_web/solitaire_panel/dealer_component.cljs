@@ -39,8 +39,7 @@
   [:div
     [:p "Congrats!"]
     [:button 
-     {:on-click #(do (dispatch [:add-transaction @(subscribe [:money]) "VEGAS SOLI..."])
-                     (dispatch [:deal-cards])
+     {:on-click #(do (dispatch [:deal-cards])
                      (dispatch [:set-scene :in-game])
                      (dispatch [:set-dealer-dialog-visible false])
                    )}
