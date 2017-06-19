@@ -41,74 +41,57 @@
          :striped? true]]
       )))
 
-(defn create-candy []
-  (let [disabled? (subscribe [:add-candies-btn-in-cooldown?])
-        percent (subscribe [:add-candies-btn-cooldown-progress])]
+(defn create-candy-btn []
+  (let [disabled? (subscribe [:add-candies-btn-in-cooldown?])]
     (fn []
-      [h-box
-       :width "20vw"
-       :align :center
-       :children [[box 
-                   :size "1"
-                   :child
-                     [:button 
-                      {:on-click #(dispatch [:add-candies-btn-clicked])
-                       :disabled @disabled?
-                       }
-                      "create candy"]]
-                  [box
-                   :size "1"
-                   :child
-                   [:div {:style {:width "100%"} }
-                     [progress-bar
-                      :model percent
-                      :striped? true]]]]]
-       )))
+      [:button 
+       {:on-click #(dispatch [:add-candies-btn-clicked])
+        :disabled @disabled? }
+       "create candy"])))
 
-(defn sell-candy []
-  (let [disabled? (subscribe [:sell-candies-btn-in-cooldown?])
-        percent (subscribe [:sell-candies-btn-cooldown-progress])]
+(defn create-candy-progress []
+      [progress-bar
+       :model (subscribe [:add-candies-btn-cooldown-progress])
+       :striped? true])
+
+(defn sell-candy-btn []
+  (let [disabled? (subscribe [:sell-candies-btn-in-cooldown?])]
     (fn []
-      [h-box
-       :width "20vw"
-       :align :center
-       :children [[box 
-                   :size "1"
-                   :child
-                     [:button 
-                      {:on-click #(dispatch [:sell-candies-btn-clicked])
-                       :disabled @disabled?
-                       }
-                      "sell candy"]]
-                  [box
-                   :size "1"
-                   :child
-                   [:div {:style {:width "100%"}}
-                     [progress-bar
-                      :model percent
-                      :striped? true]]]]]
-       )))
+      [:button 
+       {:on-click #(dispatch [:sell-candies-btn-clicked])
+        :disabled @disabled? }
+       "sell candy"])))
 
-
+(defn sell-candy-progress []
+      [progress-bar
+       :model (subscribe [:sell-candies-btn-cooldown-progress])
+       :striped? true])
 
 (defn dashboard []
   (dispatch [:start-dashboard])
   [:div 
    [last-updated-at]
-   [:hr]
-   [total-candies]
-   [create-candy]
-   [:hr]
-   [container-capacity]
-   [candy-container-progress]
-   [:hr]
-   [total-money]
-   [sell-candy]
+   [h-box
+     :gap "10px"
+     :width "100vw"
+     :children [
+      [box :size "2" :child [v-box :children [
+        [box :child [total-candies]]
+        [box :child [create-candy-progress]]
+        [box :child [create-candy-btn]]]]]
+      [box :size "2" :child [v-box :children [
+        [box :child [container-capacity]]
+        [box :child [candy-container-progress]]]]]
+      [box :size "2" :child [v-box :children [
+        [box :child [total-money]]
+        [box :child [sell-candy-progress]]
+        [box :child [sell-candy-btn]]]]]
+      [box :size "6" :child [:p "spaceholder"]]]]
    ])
 
 (defn main []
   [:div {:style {:position "absolute"
-                 :right 0
-                 :top 0}}
+                 :left 0
+                 :bottom 0}}
    [dashboard]
    ])
