@@ -4,7 +4,7 @@
     [re-frame.core :refer [subscribe]]))
 
 (defn money-component []
-  (let [money (subscribe [:money])]
+  (let [money (subscribe [:total-money])]
     (fn []
       [:div
        [odometer {:id "odometer" 

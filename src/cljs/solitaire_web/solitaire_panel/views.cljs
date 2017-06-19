@@ -6,7 +6,6 @@
             [solitaire-web.solitaire-panel.card-component :refer [card-component]]
             [solitaire-web.solitaire-panel.placeholder-component :refer [stock-placeholder-component placeholder-component placeholder-components]]
             [solitaire-web.solitaire-panel.paddle-component :refer [paddle-component]]
-            [solitaire-web.solitaire-panel.dealer-component :refer [dealer-component]]
             [solitaire-web.solitaire-panel.money-component :refer [money-component]]
             [solitaire-web.solitaire-panel.coordinates :refer [board-left-padding]]
             [reagent.core :as reagent]
@@ -44,17 +43,7 @@
 
 (defn board []
   [:div  {:id "board"}
-   [:br]
-   [h-box
-    :align :center
-    :size "auto"
-    :children [
-               [box :size "1" :child ""]
-               [box :size "1" :child ""]
-               [box :size "none" :justify :center :align-self :center :child [dealer-component]] 
-               [box :size "1" :align-self :center :child [money-component]]
-               [box :size "1" :child ""]
-               ]]
+   [dashboard/main]
    [:br]
    [h-box
     :align :center
@@ -73,7 +62,6 @@
    [deal-cards-button]
    [new-game-button]
    [latte]
-   [dashboard/main]
    ]
   )
 

@@ -1,6 +1,8 @@
 (ns solitaire-web.solitaire-panel.dashboard_panel.views
   (:require [solitaire-web.solitaire-panel.dashboard-panel.events]
             [solitaire-web.solitaire-panel.dashboard-panel.subs]
+            [solitaire-web.solitaire-panel.dealer-component :refer [dealer-component]]
+            [solitaire-web.solitaire-panel.money-component :refer [money-component]]
             [re-com.core :refer [progress-bar h-box v-box box]]
     [re-frame.core :refer [dispatch dispatch-sync subscribe]]))
 
@@ -70,11 +72,11 @@
 (defn dashboard []
   (dispatch [:start-dashboard])
   [:div 
-   [last-updated-at]
    [h-box
      :gap "10px"
      :width "100vw"
      :children [
+      [box :size "2" :child [dealer-component]]
       [box :size "2" :child [v-box :children [
         [box :child [total-candies]]
         [box :child [create-candy-progress]]
@@ -86,12 +88,14 @@
         [box :child [total-money]]
         [box :child [sell-candy-progress]]
         [box :child [sell-candy-btn]]]]]
-      [box :size "6" :child [:p "spaceholder"]]]]
+      [box :size "1" :child [:p "placeholder"]]
+      [box :size "3" :child [v-box :children [
+        [box :child [last-updated-at]]
+        [box :child [money-component]]
+                                             ] ]]]]
    ])
 
 (defn main []
-  [:div {:style {:position "absolute"
-                 :left 0
-                 :bottom 0}}
+  [:div 
    [dashboard]
    ])
